@@ -7,7 +7,70 @@
   </head>
   <body>
 
-    <h1>Test</h1>
+    <!-- Title and Content -->
+    <h1>Prog Lang - Main Page</h1>
+    <div id="mainContent">
+      <h2>About ProgLang</h2>
+      <p>
+        This website was made as a way for both experienced and inexperienced
+        programmers to learn, support one another and entertain each other.
+        Every programming language has a quick, wikipedia-like article explaining
+        a bit about the history of the language, with a short tutorial at the end.
+        Each language also has a little forum where posts can be made. These posts
+        are only limited to the language they are about. All posts are allowed
+        from asking for help with your code to showing off your personal projects.
+      </p>
+
+      <h2>Trust-Score</h2>
+      <p>
+        Every user is given a rating from 1 to 10 on how trustworthy we find them.
+        This is based on many factors like how long they have been a member, how
+        popular their posts are and how helpful their articles/article edits are.
+        To begin with, every user's Trust-Score is 5. the easiest way to raise
+        your TS is by making a post on the forum. Depending on how popular your
+        post is, you could gain up to 4 TS points.
+      </p>
+
+      <h2>Featured Article: C</h2>
+      <p>
+        
+      </p>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sideBar">
+      <img id="logo" src="../../assets/img/logo_large.png" alt="ProgLang logo">
+      <hr>
+
+      <!-- Login Form -->
+      <form id="loginForm" action="../php/login.php" method="post">
+        <img src="../../assets/img/placeholder.png" alt="User placeholder image">
+        <input type="text" name="email" placeholder="Email Address"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <input type="submit" name="submit" value="Login">
+      </form>
+      <a href="../php/register.php">Register</a>
+      <a href="../php/forgotPass.php">I forgot my Password</a>
+      <hr>
+
+      <!-- Search Bar -->
+      <form id="searchForm" action="../php/search.php" method="post">
+        <input type="text" name="query" placeholder="Search...">
+        <input type="submit" name="submit" value="🔍">
+      </form>
+      <hr>
+
+      <a class="buttonLink" href="../html/main.html">Main Page</a>
+      <a class="buttonLink" href="../php/random.php">Random Page</a>
+      <hr>
+
+      <p>
+        Contact:<br>
+        <a href="mailto: samuel.pearce@crealogix.com">samuel.pearce@crealogix.com</a><br>
+        +41 58 404 83 59
+      </p>
+
+    </div>
 
   </body>
 </html>

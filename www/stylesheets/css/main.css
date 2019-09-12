@@ -1,20 +1,22 @@
-#title, #mainContent {
-  border: 2px solid #444444;
-  padding: 10px; }
-
 #page {
   margin-left: 0; }
-
-#mainContent h2 {
-  padding: 10px;
-  border-bottom: 2px solid #444444; }
 
 #sideBar {
   background-color: #444444;
   color: #FFFFFF;
   padding: 10px; }
 
+.err {
+  color: #FC0F03; }
+
 .gap {
   height: 25px; }
+
+.box {
+  border: 2px solid #444444;
+  padding: 10px; }
+  .box h2 {
+    padding: 10px;
+    border-bottom: 2px solid #444444; }
 
 /*# sourceMappingURL=main.css.map */

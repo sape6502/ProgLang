@@ -1,3 +1,15 @@
+<?php
+  $isLoggedIn = false;
+
+  //Get username if already logged in
+  session_start();
+  if (isset($_SESSION['username'])) {
+    $isLoggedIn = true;
+    $currUsername = $_SESSION['username'];
+  }
+  session_abort();
+
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -27,25 +39,36 @@
           <hr>
 
           <!-- Login Form -->
-          <form id="loginForm" action="../php/login.php" method="post">
-            <img src="../../assets/img/placeholder.png" alt="User placeholder image">
-            <input type="text" name="email" placeholder="Email Address"><br>
-            <input type="password" name="password" placeholder="Password"><br>
-            <input type="submit" name="submit" value="Login">
-          </form>
-          <a href="../php/register.php">Register</a>
-          <a href="../php/forgotPass.php">I forgot my Password</a>
-          <hr>
+          <?php
+            if ($isLoggedIn) {
+              echo '
+              <img src="' . $picture . '" alt="User profile picture">
+              <h4>logged in as: ' . $username . '</h4>
+              <a href="user.php?uname=' . $username . '">My user page</a>
+              <a href="user.php?uname=' . $username . '&log=out">Log out</a>
+              <hr>';
+            } else {
+              echo '
+              <form id="loginForm" action="login.php" method="post">
+                <img src="../../assets/img/placeholder.png" alt="User placeholder image">
+                <input type="text" name="username" placeholder="Username"><br>
+                <input type="password" name="password" placeholder="Password"><br>
+                <input type="submit" name="submit" value="Login">
+              </form>
+              <a href="register.php">Register</a>
+              <hr>';
+            }
+          ?>
 
           <!-- Search Bar -->
-          <form id="searchForm" action="../php/search.php" method="post">
+          <form id="searchForm" action="search.php" method="post">
             <input type="text" name="query" placeholder="Search...">
             <input type="submit" name="submit" value="🔍">
           </form>
           <hr>
 
-          <a class="buttonLink" href="../html/main.html">Main Page</a>
-          <a class="buttonLink" href="../php/random.php">Random Page</a>
+          <a class="buttonLink" href="main.php">Main Page</a>
+          <a class="buttonLink" href="random.php">Random Page</a>
           <hr>
 
           <p>
@@ -64,7 +87,7 @@
           <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-11">
-              <h1 id="title">Prog Lang - Main Page</h1>
+              <h1 class="box">Prog Lang - Main Page</h1>
             </div>
           </div>
           <div class="row"><div class="gap"></div></div>
@@ -74,7 +97,7 @@
 
             <!-- Main Content -->
             <div class="col-md-11">
-              <div id="mainContent">
+              <div class="box">
                 <h2>About ProgLang</h2>
                 <p>
                   This website was made as a way for both experienced and inexperienced

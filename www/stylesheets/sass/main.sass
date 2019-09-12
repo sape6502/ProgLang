@@ -3,6 +3,7 @@
 // Colours
 $white: #FFFFFF
 $darkgrey: #444444
+$red: #FC0F03
 
 // Borders
 $borderWidth: 2px
@@ -13,25 +14,9 @@ $borderColour: $darkgrey
 $globalPad: 10px
 $gapSize: 25px
 
-// Boxes on the Right
-%rightBox
-  border: $borderWidth $borderType $borderColour
-  padding: $globalPad
-
-
 /// IDS ///
 #page
   margin-left: 0
-
-#title
-  @extend %rightBox
-
-#mainContent
-  @extend %rightBox
-
-  h2
-    padding: $globalPad
-    border-bottom: $borderWidth $borderType $borderColour
 
 #sideBar
   background-color: $darkgrey
@@ -46,5 +31,16 @@ $gapSize: 25px
 
 /// CLASSES ///
 
+.err
+  color: $red
+
 .gap
   height: $gapSize
+
+.box
+  border: $borderWidth $borderType $borderColour
+  padding: $globalPad
+
+  h2
+    padding: $globalPad
+    border-bottom: $borderWidth $borderType $borderColour

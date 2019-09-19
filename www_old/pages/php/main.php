@@ -34,7 +34,7 @@
       <div class="row">
 
         <!-- Sidebar -->
-        <div class="col-md-3" id="sideBar">
+        <div class="col-lg-3" id="sideBar">
           <img id="logo" src="../../assets/img/logo_large.png" alt="ProgLang logo">
           <hr>
 
@@ -80,23 +80,23 @@
         </div>
 
         <!-- Right Side -->
-        <div class="col-md-9">
+        <div class="col-lg-9">
 
           <!-- Page Title -->
           <div class="row"><div class="gap"></div></div>
           <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-11">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11">
               <h1 class="box">Prog Lang - Main Page</h1>
             </div>
           </div>
           <div class="row"><div class="gap"></div></div>
 
           <div class="row">
-            <div class="col-md-1"></div>
+            <div class="col-lg-1"></div>
 
             <!-- Main Content -->
-            <div class="col-md-11">
+            <div class="col-lg-11">
               <div class="box">
                 <h2>About ProgLang</h2>
                 <p>

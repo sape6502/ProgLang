@@ -3,6 +3,7 @@
 // Colours
 $white: #FFFFFF
 $lightgrey: #DDDDDD
+$grey: #808080
 $darkgrey: #393E46
 $black: #000000
 
@@ -61,6 +62,34 @@ $gapSize: 25px
         float: right
         padding: $smallPad
 
+#formPage
+    padding: $globalPad
+
+    input
+        padding: $globalPad
+        margin: $smallPad
+        margin-left: 0
+        width: 100%
+
+#userPage
+    img
+        width: 200px
+        margin-bottom: $globalPad
+
+    form
+        width: 200px
+        padding: $globalPad
+
+        input
+            padding: $smallPad
+            margin: $smallPad
+            width: 100%
+
+        textarea
+            margin: $smallPad
+            width: 500px
+            height: 100px
+
 #searchForm
 
 /// CLASSES ///
@@ -107,6 +136,14 @@ $gapSize: 25px
     h2
         padding: $globalPad
         border-bottom: $borderWidth $borderType $borderColour
+
+.buttonLink
+    border: 2px solid $white
+    border-bottom: 2px solid $grey
+    border-right:  2px solid $grey
+    padding: $globalPad
+    color: $white
+    background-color: $lightgrey
 
 /// ELEMENTS ///
 

@@ -30,6 +30,29 @@
     float: right;
     padding: 5px; }
 
+#formPage {
+  padding: 10px; }
+  #formPage input {
+    padding: 10px;
+    margin: 5px;
+    margin-left: 0;
+    width: 100%; }
+
+#userPage img {
+  width: 200px;
+  margin-bottom: 10px; }
+#userPage form {
+  width: 200px;
+  padding: 10px; }
+  #userPage form input {
+    padding: 5px;
+    margin: 5px;
+    width: 100%; }
+  #userPage form textarea {
+    margin: 5px;
+    width: 500px;
+    height: 100px; }
+
 .red {
   color: #FC0F03; }
 
@@ -81,6 +104,14 @@
   .box h2 {
     padding: 10px;
     border-bottom: 2px solid #393E46; }
+
+.buttonLink {
+  border: 2px solid #FFFFFF;
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+  padding: 10px;
+  color: #FFFFFF;
+  background-color: #DDDDDD; }
 
 hr {
   background-color: #000000; }

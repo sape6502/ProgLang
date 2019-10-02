@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -29,7 +30,6 @@
                     <!-- Login Form -->
                     <?php
                         if (isset($_SESSION['username'])) {
-                            $username = $_SESSION['username'];
                             include '../login/small_info.php';
                         } else {
                             include '../login/small_form.html';

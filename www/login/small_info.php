@@ -1,5 +1,12 @@
-<img src="<?= $picture ?>" alt="User profile picture">
-<h4>logged in as: <?= $username ?></h4>
-<a href="user.php?uname=<?= $username ?>">My user page</a>
-<a href="user.php?uname=<?= $username ?>&log=out">Log out</a>
-<hr>
+<?php
+    $username = $_SESSION['username'];
+    $picture = $_SESSION['picture'];
+?>
+
+<div id="small_info">
+    <img src="../assets/img/<?= $picture ?>" alt="User profile picture">
+    <h4>logged in as:</h4><i><?= $username ?></i><br>
+    <a href="../user?user=<?= $username ?>">My user page</a><br>
+    <a href="../user?user=<?= $username ?>&log=out">Log out</a><br>
+    <hr>
+</div>

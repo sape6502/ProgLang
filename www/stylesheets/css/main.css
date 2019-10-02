@@ -13,22 +13,27 @@
   margin-right: auto;
   display: block; }
 
-#loginForm {
+#small_form {
   padding: 5px;
   height: 130px; }
-  #loginForm img {
+  #small_form img {
     width: 80px;
     float: left; }
-  #loginForm input[type=submit] {
+  #small_form input[type=submit] {
     background-color: #DDDDDD;
     width: 251px;
     height: 40px;
     margin-top: 5px; }
-  #loginForm input[type=text], #loginForm input[type=password] {
+  #small_form input[type=text], #small_form input[type=password] {
     width: 160px;
     height: 40px;
     float: right;
     padding: 5px; }
+
+#small_info img {
+  width: 115px;
+  float: left;
+  margin-right: 5px; }
 
 #formPage {
   padding: 10px; }

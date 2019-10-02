@@ -7,6 +7,12 @@
         exit;
     }
 
+    // Log user out if logout option is set
+    if (isset($_GET['log']) && strcmp($_GET['log'], 'out') == 0) {
+        session_unset();
+        session_destroy();
+    }
+
     // Get user info from database
     $stmt = $conn->prepare('SELECT * FROM user WHERE username = ?');
     $stmt->bind_param('s', $user);
@@ -27,8 +33,14 @@
     $picture = $result['picture'];
     //TODO: Add more stats like total posts, articles etc.
 
-    session_start();
-    $isMyPage = strcmp($_SESSION['username'], $user) == 0;
+    $isMyPage = isset($_SESSION['username']) && strcmp($_SESSION['username'], $user) == 0;
+
+    if ($isMyPage) {
+        $_SESSION['description'] = $description;
+        $_SESSION['trustScore'] = $trustScore;
+        $_SESSION['joinDate'] = $joinDate;
+        $_SESSION['picture'] = $picture;
+    }
 
     // Success Messages
     if (isset($_SESSION['succ_passchange']) && $_SESSION['succ_passchange']) {

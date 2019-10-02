@@ -1,0 +1,121 @@
+/// VARIABLES & EXTENDS ///
+
+// Colours
+$white: #FFFFFF
+$lightgrey: #DDDDDD
+$darkgrey: #393E46
+$black: #000000
+
+// Roy G. Biv
+$red: #FC0F03
+$orange: #EB8C17
+$yellow: #FCF403
+$green: #16D916
+$blue: #1776EB
+$indigo: #3D16D9
+$violet: #A216D9
+
+// Borders
+$borderWidth: 2px
+$borderType: solid
+$borderColour: $darkgrey
+
+// Padding and gaps
+$globalPad: 10px
+$smallPad: 5px
+$gapSize: 25px
+
+/// IDS ///
+#page
+    margin-left: 0
+
+#sideBar
+    background-color: $darkgrey
+    color: $white
+    padding: $globalPad
+    height: 100%
+
+#logo
+    width: 200px
+    margin-left: auto
+    margin-right: auto
+    display: block
+
+#loginForm
+    padding: $smallPad
+    height: 130px
+
+    img
+        width: 80px
+        float: left
+
+    input[type=submit]
+        background-color: $lightgrey
+        width: 251px
+        height: 40px
+        margin-top: $smallPad
+
+    input[type=text], input[type=password]
+        width: 160px
+        height: 40px
+        float: right
+        padding: $smallPad
+
+#searchForm
+
+/// CLASSES ///
+
+// FG-Colours
+.red
+    color: $red
+.orange
+    color: $orange
+.yellow
+    color: $yellow
+.green
+    color: $green
+.blue
+    color: $blue
+.indigo
+    color: $indigo
+.violet
+    color: $violet
+
+// BG-Colours
+.bg-red
+    background-color: $red
+.bg-orange
+    background-color: $orange
+.bg-yellow
+    background-color: $yellow
+.bg-green
+    background-color: $green
+.bg-blue
+    background-color: $blue
+.bg-indigo
+    background-color: $indigo
+.bg-violet
+    background-color: $violet
+
+.gap
+    height: $gapSize
+
+.box
+    border: $borderWidth $borderType $borderColour
+    padding: $globalPad
+
+    h2
+        padding: $globalPad
+        border-bottom: $borderWidth $borderType $borderColour
+
+/// ELEMENTS ///
+
+hr
+    background-color: $black
+
+table, th, td
+    border: 2px solid $borderColour
+    padding: $smallPad
+
+th
+    background-color: $lightgrey

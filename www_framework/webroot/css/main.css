@@ -1,0 +1,95 @@
+#page {
+  margin-left: 0; }
+
+#sideBar {
+  background-color: #393E46;
+  color: #FFFFFF;
+  padding: 10px;
+  height: 100%; }
+
+#logo {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
+
+#loginForm {
+  padding: 5px;
+  height: 130px; }
+  #loginForm img {
+    width: 80px;
+    float: left; }
+  #loginForm input[type=submit] {
+    background-color: #DDDDDD;
+    width: 251px;
+    height: 40px;
+    margin-top: 5px; }
+  #loginForm input[type=text], #loginForm input[type=password] {
+    width: 160px;
+    height: 40px;
+    float: right;
+    padding: 5px; }
+
+.red {
+  color: #FC0F03; }
+
+.orange {
+  color: #EB8C17; }
+
+.yellow {
+  color: #FCF403; }
+
+.green {
+  color: #16D916; }
+
+.blue {
+  color: #1776EB; }
+
+.indigo {
+  color: #3D16D9; }
+
+.violet {
+  color: #A216D9; }
+
+.bg-red {
+  background-color: #FC0F03; }
+
+.bg-orange {
+  background-color: #EB8C17; }
+
+.bg-yellow {
+  background-color: #FCF403; }
+
+.bg-green {
+  background-color: #16D916; }
+
+.bg-blue {
+  background-color: #1776EB; }
+
+.bg-indigo {
+  background-color: #3D16D9; }
+
+.bg-violet {
+  background-color: #A216D9; }
+
+.gap {
+  height: 25px; }
+
+.box {
+  border: 2px solid #393E46;
+  padding: 10px; }
+  .box h2 {
+    padding: 10px;
+    border-bottom: 2px solid #393E46; }
+
+hr {
+  background-color: #000000; }
+
+table, th, td {
+  border: 2px solid #393E46;
+  padding: 5px; }
+
+th {
+  background-color: #DDDDDD; }
+
+/*# sourceMappingURL=main.css.map */

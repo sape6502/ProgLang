@@ -29,6 +29,7 @@ $gapSize: 25px
 /// IDS ///
 #page
     margin-left: 0
+    height: 100%
 
 #sideBar
     background-color: $darkgrey
@@ -65,6 +66,8 @@ $gapSize: 25px
 #small_info
     img
         width: 115px
+        height: 115px
+        overflow: hidden
         float: left
         margin-right: $smallPad
 
@@ -80,6 +83,7 @@ $gapSize: 25px
 #userPage
     img
         width: 200px
+        height: 200px
         margin-bottom: $globalPad
 
     form
@@ -151,7 +155,11 @@ $gapSize: 25px
     color: $white
     background-color: $lightgrey
 
+
 /// ELEMENTS ///
+
+html, body
+    height: 100%
 
 hr
     background-color: $black

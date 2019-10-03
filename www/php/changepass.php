@@ -3,23 +3,18 @@
     session_start();
 
     if (!isset($_SESSION['username'])) {
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: ../main', true, 301);
         exit;
     }
 
-    $_SESSION['err_dbconn'] = false;
-    $_SESSION['err_fields_ch'] = false;
-    $_SESSION['err_fields_dl'] = false;
-    $_SESSION['err_passmatch'] = false;
-    $_SESSION['err_passwrong_ch'] = false;
-    $_SESSION['err_passwrong_dl'] = false;
-    $_SESSION['succ_passchange'] = false;
+    include 'initmsgs.php';
     $username = $_SESSION['username'];
 
     if (!isset($_POST['oldPass'], $_POST['newPass1'], $_POST['newPass2']) ||
         (strcmp($_POST['oldPass'], '') == 0) ||
         (strcmp($_POST['newPass1'], '') == 0) ||
         (strcmp($_POST['newPass2'], '') == 0)) {
+
         $_SESSION['err_fields_ch'] = true;
         header('Location: ../user?user=' . $username, true, 301);
         exit;
@@ -43,7 +38,7 @@
         exit;
     }
 
-    // Get old user password
+    // Get old user password hash
     $stmt = $conn->prepare('SELECT passwordHash FROM user WHERE username = ?');
     $stmt->bind_param('s', $username);
     $stmt->execute();

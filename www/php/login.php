@@ -4,9 +4,7 @@
     include 'db_connect.php';
 
     session_start();
-    $_SESSION['connError'] = false;
-    $_SESSION['fieldsSet'] = false;
-    $_SESSION['incorrect'] = false;
+    include 'initmsgs.php';
 
     if ($conn_err) {
         $_SESSION['connError'] = true;
@@ -23,12 +21,12 @@
             $password = $_POST['password'];
 
             // Get user data
-            $stmt = $conn->prepare('SELECT passwordHash FROM user WHERE username = ?');
+            $stmt = $conn->prepare('SELECT * FROM user WHERE username = ?');
             $stmt->bind_param('s', $username);
             $stmt->execute();
-            $result = $stmt->get_result();
+            $result = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            $passHash = $result->fetch_assoc()['passwordHash'];
+            $passHash = $result['passwordHash'];
 
             // Verify user's identity
             $verified = password_verify($password, $passHash);
@@ -37,6 +35,10 @@
             if ($verified) {
                 $conn->close();
                 $_SESSION['username'] = $username;
+                $_SESSION['description'] = $result['description'];
+                $_SESSION['trustScore'] = $result['trustScore'];
+                $_SESSION['joinDate'] = $result['joinDate'];
+                $_SESSION['picture'] = $result['picture'];
                 //TODO: Add proper validation with login ids etc.
                 header('Location: ../user?user=' . $username, true, 301);
                 exit;

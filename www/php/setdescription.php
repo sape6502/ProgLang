@@ -7,8 +7,7 @@
         exit;
     }
 
-    $_SESSION['err_dbconn'] = false;
-    $_SESSION['succ_descchange'] = false;
+    include 'initmsgs.php';
     $username = $_SESSION['username'];
 
     if (isset($_POST['submit'], $_POST['description'])) {
@@ -29,5 +28,6 @@
     }
 
     $_SESSION['succ_descchange'] = true;
+    $_SESSION['description'] = $_POST['description'];
     header('Location: ../user?user=' . $username, true, 301);
     exit;

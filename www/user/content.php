@@ -7,12 +7,6 @@
         exit;
     }
 
-    // Log user out if logout option is set
-    if (isset($_GET['log']) && strcmp($_GET['log'], 'out') == 0) {
-        session_unset();
-        session_destroy();
-    }
-
     // Get user info from database
     $stmt = $conn->prepare('SELECT * FROM user WHERE username = ?');
     $stmt->bind_param('s', $user);
@@ -35,13 +29,6 @@
 
     $isMyPage = isset($_SESSION['username']) && strcmp($_SESSION['username'], $user) == 0;
 
-    if ($isMyPage) {
-        $_SESSION['description'] = $description;
-        $_SESSION['trustScore'] = $trustScore;
-        $_SESSION['joinDate'] = $joinDate;
-        $_SESSION['picture'] = $picture;
-    }
-
     // Success Messages
     if (isset($_SESSION['succ_passchange']) && $_SESSION['succ_passchange']) {
         echo '<h5 class="green">Password successfully changed.</h5>';
@@ -60,7 +47,9 @@
 ?>
 
 <div id='userPage'>
-    <img src="../assets/img/<?= $picture ?>">
+    <div id="large_pic">
+        <img src="<?= $picture ?>">
+    </div>
     <table>
         <tr>
             <td><strong>Username:</strong></td>
@@ -79,11 +68,14 @@
     <h2>Description:</h2>
     <?php
         if ($isMyPage) {
+            // Change Description
             if (isset($_SESSION['err_dbconn']) && $_SESSION['err_dbconn'])
                 echo '<h5 class="red">Failed to connect to database.
                 Please try again later</h5>';
 
             include 'desc_form.php';
+
+            // Change Password
             echo '<h2 id="opts">Options:</h2><h4>Change password</h4>';
             include 'pass_form.html';
 
@@ -96,6 +88,26 @@
             if (isset($_SESSION['err_fields_ch']) && $_SESSION['err_fields_ch'])
                 echo '<h5 class="red">All fields are required.</h5>';
 
+            // Change Profile Picture
+            echo '<h4>Change profile picture</h4>';
+            include 'imgs_form.html';
+
+            if (isset($_SESSION['err_passwrong_im']) && $_SESSION['err_passwrong_im'])
+                echo '<h5 class="red">Incorrect password</h5>';
+
+            if (isset($_SESSION['err_fields_im']) && $_SESSION['err_fields_im'])
+                echo '<h5 class="red">All fields are required.</h5>';
+
+            if (isset($_SESSION['err_ftoobig']) && $_SESSION['err_ftoobig'])
+                echo '<h5 class="red">That image is too large.</h5>';
+
+            if (isset($_SESSION['err_fupfail']) && $_SESSION['err_fupfail'])
+                echo '<h5 class="red">Failed to upload file. Please try again later.</h5>';
+
+            if (isset($_SESSION['err_fdims']) && $_SESSION['err_fdims'])
+                echo '<h5 class="red">Profile picture must be square.</h5>';
+
+            // Delete Account
             echo '<h4>Delete Account</h4>';
             include 'dele_form.html';
 
@@ -104,6 +116,7 @@
 
             if (isset($_SESSION['err_fields_dl']) && $_SESSION['err_fields_dl'])
                 echo '<h5 class="red">All fields are required.</h5>';
+
         } else {
             echo '<p>' . $description . '</p>';
         }

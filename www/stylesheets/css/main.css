@@ -1,5 +1,6 @@
 #page {
-  margin-left: 0; }
+  margin-left: 0;
+  height: 100%; }
 
 #sideBar {
   background-color: #393E46;
@@ -117,6 +118,9 @@
   padding: 10px;
   color: #FFFFFF;
   background-color: #DDDDDD; }
+
+html, body {
+  height: 100%; }
 
 hr {
   background-color: #000000; }

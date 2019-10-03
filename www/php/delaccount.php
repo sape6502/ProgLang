@@ -7,11 +7,7 @@
         exit;
     }
 
-    $_SESSION['err_dbconn'] = false;
-    $_SESSION['err_fields_ch'] = false;
-    $_SESSION['err_fields_dl'] = false;
-    $_SESSION['err_passwrong_ch'] = false;
-    $_SESSION['err_passwrong_dl'] = false;
+    include 'initmsgs.php';
     $username = $_SESSION['username'];
 
     if (!isset($_POST['password']) ||
@@ -52,5 +48,7 @@
     $stmt->execute();
     $stmt->close();
 
+    session_unset();
+    session_destroy();
     header('Location: ../main', true, 301);
     exit;

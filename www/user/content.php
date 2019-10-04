@@ -16,7 +16,7 @@
 
     // If the user doesn't exist
     if ($result == NULL) {
-        echo '<h3 class="orange">This user doesn\'t exist</h3>';
+        header('Location: ../404', true, 301);
         exit;
     }
 

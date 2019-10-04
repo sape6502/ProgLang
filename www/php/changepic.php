@@ -60,7 +60,7 @@
     $stmt->close();
 
     //delete old picture
-    if (strcmp($oldPic, '../assets/img/placeholder.png') != 0 && file_exists($oldPic)) {
+    if (strcmp($oldPic, '../assets/img/profilepic/placeholder.png') != 0 && file_exists($oldPic)) {
         unlink($oldPic);
     }
 

@@ -29,17 +29,23 @@
     }
 
     // Get old user password
-    $stmt = $conn->prepare('SELECT passwordHash FROM user WHERE username = ?');
+    $stmt = $conn->prepare('SELECT passwordHash, picture FROM user WHERE username = ?');
     $stmt->bind_param('s', $username);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $stmt->get_result()->fetch_assoc();
     $stmt->close();
-    $passHash = $result->fetch_assoc()['passwordHash'];
+    $passHash = $result['passwordHash'];
+	$picture = $result['picture'];
 
     if (!password_verify($password, $passHash)) {
         $_SESSION['err_passwrong_dl'] = true;
         header('Location: ../user?user=' . $username, true, 301);
         exit;
+    }
+
+	// Delete profile picture
+	if (strcmp($picture, '../assets/img/profilepic/placeholder.png') != 0 && file_exists($picture)) {
+        unlink($picture);
     }
 
     // Delete user from database

@@ -1,0 +1,95 @@
+<h3 class="orange">That page couldn't be found</h3>
+
+<p>
+    To make sure everybody understands that something
+    has gone wrong, here's an error in many of the most
+    popular programming languages (In no particluar order):
+</p>
+
+<hr>
+<a href="../main">Back to main page</a>
+<hr>
+
+<pre class="red">
+    <h5 class="blue">C / C++ (Clang)</h5>
+    pageGetter.c:1:27: error: use of undeclared identifier 'page'
+        getPage(page);
+                ^
+    1 error generated.
+
+    <h5 class="blue">C / C++ (GCC)</h5>
+    pageGetter.c: In function 'main':
+    pageGetter.c:1:27: error: 'page' undeclared (first use in this function)
+         getPage(page);
+                 ^
+    pageGetter.c:1:27: note: each undeclared identifier is reported only once
+    for each function it appears in.
+
+    <h5 class="blue">Java</h5>
+    pageGetter.java:1: error: cannot find symbol
+            getPage(page);
+                    ^
+      symbol:   variable page
+      location: class register
+    1 error
+
+    <h5 class="blue">Javascript</h5>
+    error: ReferenceError: page is not defined
+
+    <h5 class="blue">Python</h5>
+    Traceback (most recent call last):
+      File "pageGetter.py", line 1, in &ltmodule&gt
+        getPage(page)
+    NameError: name 'page' is not defined
+
+    <h5 class="blue">Rust</h5>
+    error[E0425]: cannot find value 'page' in this scope
+     --> pageGetter.rs:1:27
+      |
+    2 |  getPage(page);
+      |          ^^^^ not found in this scope
+
+    error: aborting due to previous error
+
+    For more information about this error, try 'rustc --explain E0425'.
+    error: could not compile 'pageGetter.rs'
+
+    To learn more, run the command again with --verbose.
+
+    <h5 class="blue">Golang</h5>
+    ./pageGetter.go:1:27: undefined: page
+
+    <h5 class="blue">Lua</h5>
+    lua: pageGetter.lua:1: attempt to call global 'getPage' (a nil value)
+    stack traceback:
+            pageGetter.lua:1: in main chunk
+            [C]: ?
+
+    <h5 class="blue">Ruby</h5>
+    pageGetter.rb:1:in '&ltmain&gt': undefined local variable or method 'page' for main:Object (NameError)
+
+    <h5 class="blue">PHP</h5>
+    Notice: Undefined variable: page in /pageGetter.php on line 2
+
+    <h5 class="blue">Swift</h5>
+    pageGetter.swift:1:27: error: use of unresolved identifier 'page'
+    getPage(page)
+            ^~~~
+
+    <h5 class="blue">SQL (MySQL)</h5>
+    You have an error in your SQL syntax; check the manual that corresponds to your
+    MySQL server version for the right syntax to use near 'getPage(page)' at line 1
+
+    <h5 class="blue">Haskell</h5>
+    pageGetter.hs:1:27:
+        Not in scope: 'page'
+
+    <h5 class="blue">Perl</h5>
+    Name "main::page" used only once: possible typo at pageGetter.pl line 1.
+
+    <h5 class="blue">Visual Basic</h5>
+    (1:0) 'page' is not declared. It may be inaccesible due to its protection level.
+
+    <h5 class="blue">Assembly (NASM)</h5>
+    pageGetter.asm:1: error: symbol 'page' undefined
+</pre>

@@ -4,6 +4,7 @@
     <input type="submit" name="submit" value="Login">
 
     <?php
+
         session_start();
 
         if (isset($_SESSION['connError'], $_SESSION['fieldsSet'], $_SESSION['incorrect'])) {

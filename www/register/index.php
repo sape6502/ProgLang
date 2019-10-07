@@ -1,5 +1,5 @@
 <?php
     $page_title = 'Register';
     $page_content = 'content.php';
-    include '../layout/simplebox.php';
+    include '../layout/smallbox.php';
 ?>

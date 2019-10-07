@@ -20,6 +20,12 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
+            // Set target redirect if set
+            $redirect = '../user/?user=' . $username;
+            if (isset($_SESSION['loginRedirect'])) {
+                $redirect = $_SESSION['loginRedirect'];
+            }
+
             // Get user data
             $stmt = $conn->prepare('SELECT * FROM user WHERE username = ?');
             $stmt->bind_param('s', $username);
@@ -40,7 +46,8 @@
                 $_SESSION['joinDate'] = $result['joinDate'];
                 $_SESSION['picture'] = $result['picture'];
                 //TODO: Add proper validation with login ids etc.
-                header('Location: ../user?user=' . $username, true, 301);
+
+                header('Location: ' . $redirect, true, 301);
                 exit;
             } else {
                 $_SESSION['incorrect'] = true;

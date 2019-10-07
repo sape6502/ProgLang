@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Prog Lang | <?= $page_title ?></title>
+        <title>Prog Lang | DEBUG PAGE</title>
         <link rel="stylesheet" type="text/css" href="../../stylesheets/css/main.css">
 
         <!-- Bootstrap -->
@@ -22,17 +22,30 @@
         <div class="row"><div class="gap"></div></div>
 
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
 
                 <div class="box">
-                    <h2><?= $page_title ?></h2>
-                    <?php include $page_content ?>
+
+                    <h2>Debug Page</h2>
+                    <strong class="red"> Don't forget to remove this before release </strong>
                     <hr>
-                    <a href="/">Main Page</a>
+                    <h3>$_POST</h3>
+                    <?= var_dump($_POST) ?>
+                    <hr>
+                    <h3>$_GET</h3>
+                    <?= var_dump($_GET) ?>
+                    <hr>
+                    <h3>$_SESSION</h3>
+                    <?php
+                        session_start();
+                        var_dump($_SESSION);
+                    ?>
+                    <hr>
+
                 </div>
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-4"></div>
         </div>
 
     </body>

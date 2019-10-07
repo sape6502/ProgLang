@@ -29,7 +29,7 @@
                     <h2><?= $page_title ?></h2>
                     <?php include $page_content ?>
                     <hr>
-                    <br><a href="/">Back to main page</a>
+                    <a href="/">Main Page</a>
                 </div>
             </div>
             <div class="col-md-4"></div>

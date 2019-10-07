@@ -37,8 +37,8 @@
                     ?>
 
                     <!-- Search Bar -->
-                    <form id="searchForm" action="../search" method="post">
-                        <input type="text" name="query" placeholder="Search...">
+                    <form id="searchForm" action="../search/index.php" method="get">
+                        <input type="text" name="q" placeholder="Search...">
                         <input type="submit" name="submit" value="🔍">
                     </form>
                     <hr>

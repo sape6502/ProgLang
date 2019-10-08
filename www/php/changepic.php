@@ -31,6 +31,7 @@
     }
 
     //Check file dimensions
+    /*
     $width = @getimagesize($_FILES['picture']['tmp_name'])[0];
     $height = @getimagesize($_FILES['picture']['tmp_name'])[1];
     if (abs($width - $height) > 5) {
@@ -38,6 +39,7 @@
         header('Location: ../user?user=' . $username, true, 301);
         exit;
     }
+    */
 
     // Verify password
     $stmt = $conn->prepare('SELECT passwordHash, picture FROM user WHERE username = ?');

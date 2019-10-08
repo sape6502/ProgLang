@@ -64,8 +64,9 @@
             $name = $row['contentTitle'];
             $thumbtext = substr($row['contentText'], 0, 100) . '...';
 
-            echo '<a href="../post/?lang=' . $name . '"><h4>' . $name . '</h4></a>';
+            echo '<a href="../post/?id=' . $row['ID_Post'] . '"><h4>' . $name . '</h4></a>';
             echo '<i>' . $thumbtext . '</i>';
+            echo '<hr>';
         }
     }
 

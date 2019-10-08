@@ -67,5 +67,5 @@
     exec('asciidoctor-pdf -a last-update-label! ../article/langs/' . $lang . '/' . $lang . '.ad ');
 
     // Redirect to article page
-    header('Location: ../article/?lang=' . $lang);
+    header('Location: ../article/?lang=' . $lang, true, 301);
     exit;

@@ -1,6 +1,6 @@
 <?php
     if (isset($_GET['q'])) {
-        $query = '%' . $_GET['q'] . '%';
+        $query = '%' . strtolower($_GET['q']) . '%';
 
         include '../php/db_connect.php';
 
@@ -8,19 +8,19 @@
             echo '<h2 class="red">Failed to connect to database. Please try again later</h2>';
         }
 
-        $stmt = $conn->prepare('SELECT * FROM article WHERE name LIKE ?');
+        $stmt = $conn->prepare('SELECT * FROM article WHERE LOWER(name) LIKE ?');
         $stmt->bind_param('s', $query);
         $stmt->execute();
         $articleResults = $stmt->get_result();
         $stmt->close();
 
-        $stmt = $conn->prepare('SELECT * FROM post WHERE contentTitle LIKE ?');
+        $stmt = $conn->prepare('SELECT * FROM post WHERE LOWER(contentTitle) LIKE ?');
         $stmt->bind_param('s', $query);
         $stmt->execute();
         $postResults = $stmt->get_result();
         $stmt->close();
 
-        $stmt = $conn->prepare('SELECT * FROM user WHERE username LIKE ?');
+        $stmt = $conn->prepare('SELECT * FROM user WHERE LOWER(username) LIKE ?');
         $stmt->bind_param('s', $query);
         $stmt->execute();
         $userResults = $stmt->get_result();
@@ -60,11 +60,11 @@
 <?php
 
     if (isset($postResults)) {
-        while ($row = $articleResults->fetch_assoc()) {
+        while ($row = $postResults->fetch_assoc()) {
             $name = $row['contentTitle'];
             $thumbtext = substr($row['contentText'], 0, 100) . '...';
 
-            echo '<a href="../article/?lang=' . $name . '"><h4>' . $name . '</h4></a>';
+            echo '<a href="../post/?lang=' . $name . '"><h4>' . $name . '</h4></a>';
             echo '<i>' . $thumbtext . '</i>';
         }
     }
@@ -75,13 +75,23 @@
 <?php
 
     if (isset($userResults)) {
-        while ($row = $articleResults->fetch_assoc()) {
+        while ($row = $userResults->fetch_assoc()) {
             $name = $row['username'];
             $thumbtext = substr($row['description'], 0, 100) . '...';
 
-            echo '<a href="../article/?lang=' . $name . '"><h4>' . $name . '</h4></a>';
+            echo '<a href="../user/?user=' . $name . '"><h4>' . $name . '</h4></a>';
             echo '<i>' . $thumbtext . '</i>';
         }
     }
 
+    // End page for people not logged in and with too low of a trust score
+    include '../php/trustconfig.php';
+    if (!isset($_SESSION['username']) || $_SESSION['trustScore'] < $min_make_articles) {
+        exit;
+    }
+
 ?>
+
+<hr>
+<h5>Can't find your language?</h5>
+<h6>Why not <a href="../create">create a new article?</a></h6>

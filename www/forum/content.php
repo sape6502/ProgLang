@@ -19,6 +19,15 @@
     $stmt->close();
     $conn->close();
 
+    // Display link to create new posts
+    if ($loggedIn && $_SESSION['trustScore'] >= $min_make_posts) {
+        echo '
+            <a href="/newpost/?lang=' . $lang . '&type=text">Make New Text Post</a>
+            <a href="/newpost/?lang=' . $lang . '&type=img">Make New Image Post</a>
+            <hr>
+        ';
+    }
+
     // Loop through every post
     while ($row = $result->fetch_assoc()) {
         $post_idnum = $row['ID_Post'];
@@ -33,7 +42,3 @@
     }
 
 ?>
-
-<button type="button" class="btn btn-default" aria-label="Left Align">
-    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-</button>

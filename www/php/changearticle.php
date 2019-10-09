@@ -8,7 +8,7 @@
     $_SESSION['err_dbconn'] = false;
 
     if (!isset($_SESSION['proglang'])) {
-        header('Location: /main');
+        header('Location: /main', true, 301);
         exit;
     }
 
@@ -17,7 +17,7 @@
         strcmp($_POST['password'], '') == 0) {
 
         $_SESSION['err_fieldsset'] = true;
-        header('Location: /edit');
+        header('Location: /edit', true, 301);
         exit;
     }
 
@@ -31,10 +31,11 @@
 
     if ($conn_err) {
         $_SESSION['err_dbconn'] = true;
-        header('Location: /edit');
+        header('Location: /edit', true, 301);
         exit;
     }
 
+    //TODO: Use verifyuser.php
     $stmt = $conn->prepare('SELECT passwordHash, username FROM user JOIN article ON author_User_ID = ID_User WHERE name = ?');
     $stmt->bind_param('s', $proglang);
     $stmt->execute();
@@ -46,7 +47,7 @@
     // Verify user's credentials
     if (!password_verify($password, $pHash) || strcmp($username, $uName) != 0) {
         $_SESSION['err_password'] = true;
-        header('Location: /edit');
+        header('Location: /edit', true, 301);
         exit;
     }
 

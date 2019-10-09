@@ -2,11 +2,12 @@
 
     // Connect to database
     include 'db_connect.php';
+    $dbconn = new DBConn();
 
     session_start();
     include 'initmsgs.php';
 
-    if ($conn_err) {
+    if ($dbconn->conn_err()) {
         $_SESSION['connError'] = true;
     } else {
 
@@ -26,26 +27,15 @@
                 $redirect = $_SESSION['loginRedirect'];
             }
 
-            // Get user data
-            $stmt = $conn->prepare('SELECT * FROM user WHERE username = ?');
-            $stmt->bind_param('s', $username);
-            $stmt->execute();
-            $result = $stmt->get_result()->fetch_assoc();
-            $stmt->close();
-            $passHash = $result['passwordHash'];
-
-            // Verify user's identity
-            $verified = password_verify($password, $passHash);
-            unset($password, $passHash);
+            $verified = $dbconn->verify_user($username, $password);
+            $result = $dbconn->get_table_where('user', 'username', $username);
 
             if ($verified) {
-                $conn->close();
                 $_SESSION['username'] = $username;
                 $_SESSION['description'] = $result['description'];
                 $_SESSION['trustScore'] = $result['trustScore'];
                 $_SESSION['joinDate'] = $result['joinDate'];
                 $_SESSION['picture'] = $result['picture'];
-                //TODO: Add proper validation with login ids etc.
 
                 header('Location: ' . $redirect, true, 301);
                 exit;
@@ -57,6 +47,5 @@
 
     }
 
-    $conn->close();
     header('Location: /login', true, 301);
     exit;

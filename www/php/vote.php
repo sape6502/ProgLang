@@ -2,7 +2,7 @@
 
     // Check post id is set
     if (!isset($_GET['id']) || strcmp($_GET['id'], '') == 0) {
-        header('Location: ../../main', true, 301);
+        header('Location: /main', true, 301);
         exit;
     }
 
@@ -11,7 +11,7 @@
     // Check user login
     include 'trustconfig.php';
     if (!isset($_SESSION['username'], $_SESSION['trustScore']) || $_SESSION['trustScore'] < $min_rate_posts) {
-        header('Location: ../../post/?id=' . $postid, true, 301);
+        header('Location: /post/?id=' . $postid, true, 301);
         exit;
     }
 
@@ -19,7 +19,7 @@
 
     // Check fields are set
     if (!isset($_GET['u']) || (strcmp($_GET['u'], 'y') != 0 && strcmp($_GET['u'], 'n') != 0)) {
-        header('Location: ../../post/?id=' . $postid, true, 301);
+        header('Location: /post/?id=' . $postid, true, 301);
         exit;
     }
 
@@ -29,7 +29,7 @@
     include 'db_connect.php';
 
     if ($conn_err) {
-        header('Location: ../../post/?id=' . $postid, true, 301);
+        header('Location: /post/?id=' . $postid, true, 301);
         exit;
     }
 
@@ -49,11 +49,11 @@
     $stmt->close();
 
     $stmt = $conn->prepare('INSERT INTO vote (Post_ID, User_ID, isUpvote) VALUES (?, (SELECT ID_User FROM user WHERE username = ?), ?)');
-    $stmt->bind_param('iii', $postid, $username, $upvoteNum);
+    $stmt->bind_param('isi', $postid, $username, $upvoteNum);
     $stmt->execute();
     $stmt->close();
     $conn->close();
 
     // Redirect back to post
-    header('Location: ../../post/?id=' . $postid, true, 301);
+    header('Location: /post/?id=' . $postid, true, 301);
     exit;

@@ -29,6 +29,7 @@
 
                     <!-- Login Form -->
                     <?php
+                        //TODO: Make login page return you to where you were
                         if (isset($_SESSION['username'])) {
                             include '../login/small_info.php';
                         } else {
@@ -88,6 +89,8 @@
 
             </div>
         </div>
+
+        <!-- TODO: Add footer -->
 
     </body>
 </html>

@@ -13,9 +13,9 @@
         <?php
             if ($loggedIn) {
                 echo '
-                    <a href="../php/vote.php/?id=' . $post_idnum . '&u=y"><img class="votebtn" src="../assets/img/upvote.png"></a>
+                    <a href="/php/vote.php/?id=' . $post_idnum . '&u=y"><img class="votebtn" src="../assets/img/upvote.png"></a>
                     <h3>' . $post_score . '</h3>
-                    <a href="../php/vote.php/?id=' . $post_idnum . '&u=n"><img class="votebtn" src="../assets/img/downvote.png"></a>
+                    <a href="/php/vote.php/?id=' . $post_idnum . '&u=n"><img class="votebtn" src="../assets/img/downvote.png"></a>
                 ';
             }
         ?>

@@ -1,5 +1,5 @@
 <?php
     $page_title = 'Community Guidelines';
     $page_content = '/guidelines/content.html';
-    include '/layout/default.php';
+    include '../layout/default.php';
 ?>

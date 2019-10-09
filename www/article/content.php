@@ -1,7 +1,7 @@
 <?php
 
     // Connect to the database
-    include '/php/db_connect.php';
+    include '../php/db_connect.php';
 
     if ($conn_err) {
         echo '<h4 class="red">Failed to connect to database. Please try again later</h4>';

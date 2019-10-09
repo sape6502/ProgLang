@@ -7,7 +7,7 @@
     }
 
     // Connect to database
-    include '/php/db_connect.php';
+    include '../php/db_connect.php';
 
     if ($conn_err) {
         header('Location: ../main', true, 301);
@@ -33,5 +33,5 @@
 
     $page_title = $post_title;
     $page_content = 'content.php';
-    include '/layout/default.php';
+    include '../layout/default.php';
 ?>

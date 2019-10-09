@@ -15,5 +15,5 @@
 
     $page_title = $user . '\'s User Page';
     $page_content = 'content.php';
-    include '/layout/default.php';
+    include '../layout/default.php';
 ?>

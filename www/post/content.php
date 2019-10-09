@@ -1,6 +1,6 @@
 <?php
     // Check if user is logged in and has enough trustscore to rate posts
-    include '/php/trustconfig.php';
+    include '../php/trustconfig.php';
     $loggedIn = isset($_SESSION['username'], $_SESSION['trustScore']) && $_SESSION['trustScore'] >= $min_rate_posts;
 ?>
 <div class="post">

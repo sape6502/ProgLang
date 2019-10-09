@@ -31,9 +31,9 @@
                     <?php
                         //TODO: Make login page return you to where you were
                         if (isset($_SESSION['username'])) {
-                            include '/login/small_info.php';
+                            include '../login/small_info.php';
                         } else {
-                            include '/login/small_form.html';
+                            include '../login/small_form.html';
                         }
                     ?>
 

@@ -27,7 +27,7 @@
     $password = $_POST['password'];
 
     // Check the user's Password
-    include '/php/db_connect.php';
+    include '../php/db_connect.php';
 
     if ($conn_err) {
         $_SESSION['err_dbconn'] = true;

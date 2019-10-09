@@ -7,5 +7,5 @@
 
     $page_title = 'Article - ' . $proglang;
     $page_content = 'content.php';
-    include '/layout/default.php';
+    include '../layout/default.php';
 ?>

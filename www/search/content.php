@@ -2,7 +2,7 @@
     if (isset($_GET['q'])) {
         $query = '%' . strtolower($_GET['q']) . '%';
 
-        include '/php/db_connect.php';
+        include '../php/db_connect.php';
 
         if ($conn_err) {
             echo '<h2 class="red">Failed to connect to database. Please try again later</h2>';
@@ -45,7 +45,7 @@
     if (isset($articleResults)) {
         while ($row = $articleResults->fetch_assoc()) {
             $name = $row['name'];
-            $f = fopen('/article/langs/' . $name . '/' . $name . '.ad', 'r');
+            $f = fopen('../article/langs/' . $name . '/' . $name . '.ad', 'r');
             $thumbtext = fread($f, 100) . '...';
             fclose($f);
 
@@ -86,7 +86,7 @@
     }
 
     // End page for people not logged in and with too low of a trust score
-    include '/php/trustconfig.php';
+    include '../php/trustconfig.php';
     if (!isset($_SESSION['username']) || $_SESSION['trustScore'] < $min_make_articles) {
         exit;
     }

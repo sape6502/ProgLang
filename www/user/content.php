@@ -1,6 +1,6 @@
 <?php
 
-    include '/php/db_connect.php';
+    include '../php/db_connect.php';
 
     if ($conn_err) {
         echo '<h3 class="red">Failed to reach database.<br>Please try again later.</h3>';

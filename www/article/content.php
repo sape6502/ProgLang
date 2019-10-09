@@ -2,18 +2,15 @@
 
     // Connect to the database
     include '../php/db_connect.php';
+    $dbconn = new DBConn();
 
-    if ($conn_err) {
+    if ($dbconn->conn_err()) {
         echo '<h4 class="red">Failed to connect to database. Please try again later</h4>';
         exit;
     }
 
-    // Get article from database
-    $stmt = $conn->prepare('SELECT * FROM article JOIN user ON author_User_ID = ID_User WHERE name = ?');
-    $stmt->bind_param('s', $proglang);
-    $stmt->execute();
-    $result = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
+    // Get article data
+    $result = $dbconn->get_query('SELECT * FROM article JOIN user ON author_User_ID = ID_User WHERE name', ValType::STRING, $proglang);
 
     // Check article exists
     if ($result == NULL) {

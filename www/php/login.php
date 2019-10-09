@@ -28,7 +28,7 @@
             }
 
             $verified = $dbconn->verify_user($username, $password);
-            $result = $dbconn->get_table_where('user', 'username', $username);
+            $result = $dbconn->get_where('user', 'username', ValType::STRING, $username);
 
             if ($verified) {
                 $_SESSION['username'] = $username;

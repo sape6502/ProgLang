@@ -28,24 +28,20 @@
 
     // Check the user's Password
     include '../php/db_connect.php';
+    $dbconn = new DBConn();
 
-    if ($conn_err) {
+    if ($dbconn->conn_err) {
         $_SESSION['err_dbconn'] = true;
         header('Location: /edit', true, 301);
         exit;
     }
 
     //TODO: Use verifyuser.php
-    $stmt = $conn->prepare('SELECT passwordHash, username FROM user JOIN article ON author_User_ID = ID_User WHERE name = ?');
-    $stmt->bind_param('s', $proglang);
-    $stmt->execute();
-    $result = $stmt->get_result()->fetch_assoc();
-    $pHash = $result['passwordHash'];
-    $uName = $result['username'];
-    $stmt->close();
+    $verified = $dbconn->verify_user($username, $password);
+    $uName = $dbconn->get_cell('SELECT username FROM user JOIN article ON author_User_ID = ID_User WHERE name', 'username', ValType::STRING, $proglang);
 
     // Verify user's credentials
-    if (!password_verify($password, $pHash) || strcmp($username, $uName) != 0) {
+    if (!$verified || strcmp($username, $uName) != 0) {
         $_SESSION['err_password'] = true;
         header('Location: /edit', true, 301);
         exit;

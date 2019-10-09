@@ -2,7 +2,8 @@
 
     // Connect to database
     include '../php/db_connect.php';
-    if ($conn_err) {
+    $dbconn = new DBConn();
+    if ($dbconn->conn_err) {
         header('Location: /main', true, 301);
         exit;
     }
@@ -12,12 +13,16 @@
     $loggedIn = isset($_SESSION['username'], $_SESSION['trustScore']) && $_SESSION['trustScore'] >= $min_rate_posts;
 
     // Get all posts for this language
-    $stmt = $conn->prepare('SELECT * FROM post JOIN article ON lang_Article_ID = ID_Article JOIN user ON creator_User_ID = ID_User WHERE name = ?');
-    $stmt->bind_param('s', $lang);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $stmt->close();
-    $conn->close();
+    $result = $dbconn->get_full('SELECT * FROM post JOIN article ON lang_Article_ID = ID_Article JOIN user ON creator_User_ID = ID_User WHERE name',
+        ValType::STRING, $lang);
+
+?>
+
+<a href="/article/?lang=<?= $lang ?>">Article</a>
+<a href="#">Forum</a>
+<hr>
+
+<?php
 
     // Display link to create new posts
     if ($loggedIn && $_SESSION['trustScore'] >= $min_make_posts) {

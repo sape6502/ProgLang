@@ -24,30 +24,30 @@
 
                 <!-- Sidebar -->
                 <div class="col-md-3" id="sideBar">
-                    <img id="logo" src="../assets/img/logo_large.png" alt="ProgLang logo">
+                    <img id="logo" src="/assets/img/logo_large.png" alt="ProgLang logo">
                     <hr>
 
                     <!-- Login Form -->
                     <?php
                         //TODO: Make login page return you to where you were
                         if (isset($_SESSION['username'])) {
-                            include '../login/small_info.php';
+                            include '/login/small_info.php';
                         } else {
-                            include '../login/small_form.html';
+                            include '/login/small_form.html';
                         }
                     ?>
 
                     <!-- Search Bar -->
-                    <form id="searchForm" action="../search/index.php" method="get">
+                    <form id="searchForm" action="/search/index.php" method="get">
                         <input type="text" name="q" placeholder="Search...">
                         <input type="submit" name="submit" value="🔍">
                     </form>
                     <hr>
 
                     <ul>
-                        <li><a href="../main">Main Page</a></li>
-                        <li><a href="../php/random">Random Page</a></li>
-                        <li><a href="../guidelines">Community Guidelines</a></li>
+                        <li><a href="/main">Main Page</a></li>
+                        <li><a href="/php/random">Random Page</a></li>
+                        <li><a href="/guidelines">Community Guidelines</a></li>
                     </ul>
                     <hr>
 

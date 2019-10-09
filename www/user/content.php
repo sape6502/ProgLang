@@ -1,6 +1,6 @@
 <?php
 
-    include '../php/db_connect.php';
+    include '/php/db_connect.php';
 
     if ($conn_err) {
         echo '<h3 class="red">Failed to reach database.<br>Please try again later.</h3>';
@@ -16,7 +16,7 @@
 
     // If the user doesn't exist
     if ($result == NULL) {
-        header('Location: ../404', true, 301);
+        header('Location: /404', true, 301);
         exit;
     }
 

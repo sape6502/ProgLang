@@ -8,7 +8,7 @@
     $_SESSION['err_dbconn'] = false;
 
     if (!isset($_SESSION['proglang'])) {
-        header('Location: ../main');
+        header('Location: /main');
         exit;
     }
 
@@ -19,7 +19,7 @@
         strcmp($_POST['password'], '') == 0) {
 
         $_SESSION['err_fieldsset'] = true;
-        header('Location: ../article/?lang=' . $proglang);
+        header('Location: /article/?lang=' . $proglang);
         exit;
     }
 
@@ -27,11 +27,11 @@
     $password = $_POST['password'];
 
     // Check the user's Password
-    include '../php/db_connect.php';
+    include '/php/db_connect.php';
 
     if ($conn_err) {
         $_SESSION['err_dbconn'] = true;
-        header('Location: ../article/?lang=' . $proglang);
+        header('Location: /article/?lang=' . $proglang);
         exit;
     }
 
@@ -46,21 +46,21 @@
     // Verify user's credentials
     if (!password_verify($password, $pHash) || strcmp($username, $uName) != 0) {
         $_SESSION['err_password'] = true;
-        header('Location: ../article/?lang=' . $proglang);
+        header('Location: /article/?lang=' . $proglang);
         exit;
     }
 
     //TODO: Add a secondary 'are you sure' warning
     // Delete article
-    unlink('../article/langs/' . $proglang . '/' . $proglang . '.ad');
-    unlink('../article/langs/' . $proglang . '/' . $proglang . '.html');
-    unlink('../article/langs/' . $proglang . '/' . $proglang . '.pdf');
-    rmdir('../article/langs/' . $proglang);
+    unlink('/article/langs/' . $proglang . '/' . $proglang . '.ad');
+    unlink('/article/langs/' . $proglang . '/' . $proglang . '.html');
+    unlink('/article/langs/' . $proglang . '/' . $proglang . '.pdf');
+    rmdir('/article/langs/' . $proglang);
 
     $stmt = $conn->prepare('DELETE FROM article WHERE name = ?');
     $stmt->bind_param('s', $proglang);
     $stmt->execute();
     $stmt->close();
 
-    header('Location: ../main');
+    header('Location: /main');
     exit;

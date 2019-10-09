@@ -3,7 +3,7 @@
     session_start();
 
     if (!isset($_SESSION['username'])) {
-        header('Location: ../main', true, 301);
+        header('Location: /main', true, 301);
         exit;
     }
 
@@ -16,7 +16,7 @@
         (strcmp($_POST['newPass2'], '') == 0)) {
 
         $_SESSION['err_fields_ch'] = true;
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
@@ -28,13 +28,13 @@
 
     if ($conn_err) {
         $_SESSION['err_dbconn'] = true;
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
     if (strcmp($newPass1, $newPass2)) {
         $_SESSION['err_passmatch'] = true;
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
@@ -48,7 +48,7 @@
 
     if (!password_verify($oldPass, $passHash)) {
         $_SESSION['err_passwrong_ch'] = true;
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
@@ -60,5 +60,5 @@
     $stmt->close();
 
     $_SESSION['succ_passchange'] = true;
-    header('Location: ../user?user=' . $username, true, 301);
+    header('Location: /user?user=' . $username, true, 301);
     exit;

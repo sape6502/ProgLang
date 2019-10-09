@@ -4,13 +4,13 @@
 
     // Check user is logged in
     if (!isset($_SESSION['username'])) {
-        header('Location: ../main', true, 301);
+        header('Location: /main', true, 301);
         exit;
     }
 
 ?>
 
-<form action="../php/createarticle.php" method="post" id="createarticle">
+<form action="/php/createarticle.php" method="post" id="createarticle">
     <input type="text" name="lang" placeholder="Language Name" readonly onfocus="this.removeAttribute('readonly');"><br>
     Article Content:<br>
     <textarea name="article" rows="8" cols="80" form="createarticle"></textarea>

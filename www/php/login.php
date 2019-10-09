@@ -21,7 +21,7 @@
             $password = $_POST['password'];
 
             // Set target redirect if set
-            $redirect = '../user/?user=' . $username;
+            $redirect = '/user/?user=' . $username;
             if (isset($_SESSION['loginRedirect'])) {
                 $redirect = $_SESSION['loginRedirect'];
             }
@@ -58,5 +58,5 @@
     }
 
     $conn->close();
-    header('Location: ../login', true, 301);
+    header('Location: /login', true, 301);
     exit;

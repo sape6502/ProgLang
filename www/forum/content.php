@@ -1,14 +1,14 @@
 <?php
 
     // Connect to database
-    include '../php/db_connect.php';
+    include '/php/db_connect.php';
     if ($conn_err) {
-        header('Location: ../main', true, 301);
+        header('Location: /main', true, 301);
         exit;
     }
 
     // Check if user is logged in
-    include '../php/trustconfig.php';
+    include '/php/trustconfig.php';
     $loggedIn = isset($_SESSION['username'], $_SESSION['trustScore']) && $_SESSION['trustScore'] >= $min_rate_posts;
 
     // Get all posts for this language

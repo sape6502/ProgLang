@@ -1,7 +1,7 @@
 <?php
 
     // Connect to the database
-    include '../php/db_connect.php';
+    include '/php/db_connect.php';
 
     if ($conn_err) {
         echo '<h4 class="red">Failed to connect to database. Please try again later</h4>';
@@ -34,8 +34,8 @@
 
 ?>
 
-<a href="../article/?lang=<?= $proglang ?>" class="greyed">Article</a>
-<a href="../forum/?lang=<?= $proglang ?>">Forum</a>
+<a href="/article/?lang=<?= $proglang ?>" class="greyed">Article</a>
+<a href="/forum/?lang=<?= $proglang ?>">Forum</a>
 <hr>
 <?php include $htmlFile; ?>
 <hr>
@@ -43,11 +43,11 @@
 <a href="langs/<?= $proglang ?>/<?= $proglang ?>.ad" download>AsciiDoc Download</a>
 <a href="langs/<?= $proglang ?>/<?= $proglang ?>.pdf" download>PDF Download</a>
 <hr>
-<i>Created by <a href="../user/?user=<?= $author ?>"><?= $author ?></a> on <?= $timeCreated ?>.</i>
+<i>Created by <a href="/user/?user=<?= $author ?>"><?= $author ?></a> on <?= $timeCreated ?>.</i>
 <br><hr>
 
 <h5>Did you find the article helpful?</h5>
-<form action="../php/changehelp.php/?lang=<?= $proglang ?>" method="post">
+<form action="/php/changehelp.php/?lang=<?= $proglang ?>" method="post">
     <input type="submit" name="h" value="Yes">
     <input type="submit" name="h" value="No">
 </form>
@@ -65,9 +65,9 @@
 ?>
 
 <hr>
-<a href="../edit">Edit Article</a>
+<a href="/edit">Edit Article</a>
 
-<form action="../php/delarticle.php" method="post">
+<form action="/php/delarticle.php" method="post">
     <input type="password" name="password" placeholder="Password">
     <input type="submit" name="submit" value="Delete Article" class="bg-red">
 </form>

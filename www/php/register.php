@@ -56,7 +56,7 @@
                 //TODO: Add proper validation with login ids etc.
 
                 $conn->close();
-                header('Location: ../user?user=' . $username, true, 301);
+                header('Location: /user?user=' . $username, true, 301);
                 exit;
             }
 
@@ -65,5 +65,5 @@
     }
 
     $conn->close();
-    header('Location: ../register', true, 301);
+    header('Location: /register', true, 301);
     exit;

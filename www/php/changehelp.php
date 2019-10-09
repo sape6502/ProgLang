@@ -5,7 +5,7 @@
         (strcmp($_POST['h'], 'Yes') != 0 &&
         strcmp($_POST['h'], 'No') != 0)) {
 
-        header('Location: ../../main', true, 301);
+        header('Location: /main', true, 301);
         exit;
     }
 
@@ -16,7 +16,7 @@
     include 'db_connect.php';
 
     if ($conn_err) {
-        header('Location: ../../main', true, 301);
+        header('Location: /main', true, 301);
         exit;
     }
 
@@ -39,5 +39,5 @@
     $stmt->execute();
 
     // Redirect back to article page
-    header('Location: ../../article/?lang=' . $lang, true, 301);
+    header('Location: /article/?lang=' . $lang, true, 301);
     exit;

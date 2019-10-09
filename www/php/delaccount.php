@@ -3,7 +3,7 @@
     session_start();
 
     if (!isset($_SESSION['username'])) {
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
@@ -14,7 +14,7 @@
         (strcmp($_POST['password'], '') == 0)) {
 
         $_SESSION['err_fields_dl'] = true;
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
@@ -24,7 +24,7 @@
 
     if ($conn_err) {
         $_SESSION['err_dbconn'] = true;
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
@@ -39,12 +39,12 @@
 
     if (!password_verify($password, $passHash)) {
         $_SESSION['err_passwrong_dl'] = true;
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
 	// Delete profile picture
-	if (strcmp($picture, '../assets/img/profilepic/placeholder.png') != 0 && file_exists($picture)) {
+	if (strcmp($picture, '/assets/img/profilepic/placeholder.png') != 0 && file_exists($picture)) {
         unlink($picture);
     }
 
@@ -56,5 +56,5 @@
 
     session_unset();
     session_destroy();
-    header('Location: ../main', true, 301);
+    header('Location: /main', true, 301);
     exit;

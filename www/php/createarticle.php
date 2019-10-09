@@ -7,7 +7,7 @@
 
     // Check user is logged in
     if (!isset($_SESSION['username'])) {
-        header('Location: ../main', true, 301);
+        header('Location: /main', true, 301);
         exit;
     }
 
@@ -18,7 +18,7 @@
         strcmp($_POST['password'], '') == 0) {
 
         $_SESSION['err_fields'] = true;
-        header('Location: ../create', true, 301);
+        header('Location: /create', true, 301);
         exit;
     }
 
@@ -29,7 +29,7 @@
     include 'db_connect.php';
     if ($conn_err) {
         $_SESSION['err_dbconn'] = true;
-        header('Location: ../create', true, 301);
+        header('Location: /create', true, 301);
         exit;
     }
 
@@ -44,7 +44,7 @@
 
     if (!password_verify($_POST['password'], $pHash)) {
         $_SESSION['err_passwd'] = true;
-        header('Location: ../create', true, 301);
+        header('Location: /create', true, 301);
         exit;
     }
 
@@ -56,8 +56,8 @@
     $conn->close();
 
     // Save in AsciiDoc File
-    mkdir('../article/langs/' . $lang);
-    $asciidocFile = '../article/langs/' . $lang . '/' . $lang . '.ad';
+    mkdir('/article/langs/' . $lang);
+    $asciidocFile = '/article/langs/' . $lang . '/' . $lang . '.ad';
     $adFile = fopen($asciidocFile, 'w');
     fwrite($adFile, $article);
     fclose($adFile);
@@ -67,5 +67,5 @@
     exec('asciidoctor-pdf -a last-update-label! ../article/langs/' . $lang . '/' . $lang . '.ad ');
 
     // Redirect to article page
-    header('Location: ../article/?lang=' . $lang, true, 301);
+    header('Location: /article/?lang=' . $lang, true, 301);
     exit;

@@ -1,7 +1,7 @@
 <div class="post box">
     <div class="titlebar">
-        <a href="../post/?id=<?= $post_idnum ?>"><h3><?= $post_title ?></h3></a>
-        <i>Posted by <a href="../user/?user=<?= $post_authu ?>"><?= $post_authu ?></a> at <?= $post_ctime ?></i>
+        <a href="/post/?id=<?= $post_idnum ?>"><h3><?= $post_title ?></h3></a>
+        <i>Posted by <a href="/user/?user=<?= $post_authu ?>"><?= $post_authu ?></a> at <?= $post_ctime ?></i>
     </div>
     <hr>
     <div class="statbox">

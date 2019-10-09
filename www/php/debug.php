@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Prog Lang | DEBUG PAGE</title>
-        <link rel="stylesheet" type="text/css" href="../../stylesheets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/css/main.css">
 
         <!-- Bootstrap -->
         <link rel="stylesheet"

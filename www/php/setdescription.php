@@ -3,7 +3,7 @@
     session_start();
 
     if (!isset($_SESSION['username'])) {
-        header('Location: ../user?user=' . $username, true, 301);
+        header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
@@ -16,7 +16,7 @@
 
         if ($conn_err) {
             $_SESSION['err_dbconn'] = true;
-            header('Location: ../user?user=' . $username, true, 301);
+            header('Location: /user?user=' . $username, true, 301);
             exit;
         }
 
@@ -29,5 +29,5 @@
 
     $_SESSION['succ_descchange'] = true;
     $_SESSION['description'] = $_POST['description'];
-    header('Location: ../user?user=' . $username, true, 301);
+    header('Location: /user?user=' . $username, true, 301);
     exit;

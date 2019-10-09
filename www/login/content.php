@@ -1,4 +1,4 @@
-<form id="formPage" action="../php/login.php" method="post">
+<form id="formPage" action="/php/login.php" method="post">
     <input type="text" name="username" placeholder="Username"><br>
     <input type="password" name="password" placeholder="Password"><br>
     <input type="submit" name="submit" value="Login">
@@ -26,5 +26,5 @@
         session_destroy();
     ?>
 
-    <a href="../register">Register an account</a>
+    <a href="/register">Register an account</a>
 </form>

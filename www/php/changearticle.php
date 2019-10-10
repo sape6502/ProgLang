@@ -36,9 +36,8 @@
         exit;
     }
 
-    //TODO: Use verifyuser.php
     $verified = $dbconn->verify_user($username, $password);
-    $uName = $dbconn->get_cell('SELECT username FROM user JOIN article ON author_User_ID = ID_User WHERE name', 'username', ValType::STRING, $proglang);
+    $uName = $dbconn->get_cell('SELECT username FROM user JOIN article ON author_User_ID = ID_User WHERE name = ?', ValType::STRING, $proglang);
 
     // Verify user's credentials
     if (!$verified || strcmp($username, $uName) != 0) {
@@ -49,7 +48,7 @@
 
     // Save changed text to AsciiDoc file
     $proglang = $_SESSION['proglang'];
-    $asciidocFile = '/article/langs/' . $proglang . '/' . $proglang . '.ad';
+    $asciidocFile = '../article/langs/' . $proglang . '/' . $proglang . '.ad';
     $adFile = fopen($asciidocFile, 'w');
     fwrite($adFile, $article);
     fclose($adFile);

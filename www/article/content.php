@@ -10,7 +10,7 @@
     }
 
     // Get article data
-    $result = $dbconn->get_query('SELECT * FROM article JOIN user ON author_User_ID = ID_User WHERE name', ValType::STRING, $proglang);
+    $result = $dbconn->get_query('SELECT * FROM article JOIN user ON author_User_ID = ID_User WHERE name = ?', ValType::STRING, $proglang);
 
     // Check article exists
     if ($result == NULL) {

@@ -2,12 +2,13 @@
 
     // Connect to database
     include 'db_connect.php';
+    $dbconn = new DBConn();
 
     session_start();
     include 'initmsgs.php';
     $_SESSION['passmatch'] = strcmp($_POST['password_1'], $_POST['password_2']) == 0;
 
-    if ($conn_err) {
+    if ($dbconn->conn_err) {
         $_SESSION['connError'] = true;
     } else {
 
@@ -24,11 +25,7 @@
             $password_con = $_POST['password_2'];
 
             // Get username
-            $stmt = $conn->prepare('SELECT * FROM user WHERE username = ?');
-            $stmt->bind_param('s', $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $stmt->close();
+            $result = $dbconn->get_full('SELECT picture FROM user WHERE username = ?', ValType::STRING, $username);
 
             $_SESSION['nametaken'] = $result->num_rows;
             $_SESSION['picture'] = $result->fetch_assoc()['picture'];
@@ -36,17 +33,10 @@
             if (!$_SESSION['nametaken'] && $_SESSION['passmatch']) {
                 $password = password_hash($password, PASSWORD_DEFAULT);
 
-                $stmt = $conn->prepare('INSERT INTO user (username, passwordHash) VALUES (?, ?)');
-                $stmt->bind_param('ss', $username, $password);
-                $stmt->execute();
-                $stmt->close();
+                $dbconn->insert_row('user', 'username', ValType::STRING, $username, 'passwordHash', ValType::STRING, $password);
 
                 //Load user data into session
-                $stmt = $conn->prepare('SELECT * FROM user WHERE username = ?');
-                $stmt->bind_param('s', $username);
-                $stmt->execute();
-                $result = $stmt->get_result()->fetch_assoc();
-                $stmt->close();
+                $result = $dbconn->get_where('user', 'username', ValType::STRING, $username);
 
                 $_SESSION['username'] = $username;
                 $_SESSION['description'] = $result['description'];
@@ -55,7 +45,6 @@
                 $_SESSION['picture'] = $result['picture'];
                 //TODO: Add proper validation with login ids etc.
 
-                $conn->close();
                 header('Location: /user?user=' . $username, true, 301);
                 exit;
             }
@@ -64,6 +53,5 @@
 
     }
 
-    $conn->close();
     header('Location: /register', true, 301);
     exit;

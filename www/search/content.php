@@ -3,28 +3,15 @@
         $query = '%' . strtolower($_GET['q']) . '%';
 
         include '../php/db_connect.php';
+        $dbconn = new DBConn();
 
-        if ($conn_err) {
+        if ($dbconn->conn_err) {
             echo '<h2 class="red">Failed to connect to database. Please try again later</h2>';
         }
 
-        $stmt = $conn->prepare('SELECT * FROM article WHERE LOWER(name) LIKE ?');
-        $stmt->bind_param('s', $query);
-        $stmt->execute();
-        $articleResults = $stmt->get_result();
-        $stmt->close();
-
-        $stmt = $conn->prepare('SELECT * FROM post WHERE LOWER(contentTitle) LIKE ?');
-        $stmt->bind_param('s', $query);
-        $stmt->execute();
-        $postResults = $stmt->get_result();
-        $stmt->close();
-
-        $stmt = $conn->prepare('SELECT * FROM user WHERE LOWER(username) LIKE ?');
-        $stmt->bind_param('s', $query);
-        $stmt->execute();
-        $userResults = $stmt->get_result();
-        $stmt->close();
+        $articleResults = $dbconn->get_full('SELECT * FROM article WHERE LOWER(name) LIKE ?', ValType::STRING, $query);
+        $postResults = $dbconn->get_full('SELECT * FROM post WHERE LOWER(contentTitle) LIKE ?', ValType::STRING, $query);
+        $userResults = $dbconn->get_full('SELECT * FROM user WHERE LOWER(username) LIKE ?', ValType::STRING, $query);
 
         $results = $articleResults->num_rows + $postResults->num_rows + $userResults->num_rows;
 

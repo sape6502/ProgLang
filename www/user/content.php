@@ -1,18 +1,15 @@
 <?php
 
     include '../php/db_connect.php';
+    $dbconn = new DBConn();
 
-    if ($conn_err) {
+    if ($dbconn->conn_err) {
         echo '<h3 class="red">Failed to reach database.<br>Please try again later.</h3>';
         exit;
     }
 
     // Get user info from database
-    $stmt = $conn->prepare('SELECT * FROM user WHERE username = ?');
-    $stmt->bind_param('s', $user);
-    $stmt->execute();
-    $result = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
+    $result = $dbconn->get_where('user', 'username', ValType::STRING, $user);
 
     // If the user doesn't exist
     if ($result == NULL) {

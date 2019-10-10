@@ -27,8 +27,9 @@
 
     // Connect to database
     include 'db_connect.php';
+    $dbconn = new DBConn();
 
-    if ($conn_err) {
+    if ($dbconn->conn_err) {
         header('Location: /post/?id=' . $postid, true, 301);
         exit;
     }
@@ -43,16 +44,9 @@
     }
 
     // Update database
-    $stmt = $conn->prepare('UPDATE post SET score = ? WHERE ID_Post = ?');
-    $stmt->bind_param('ii', $post_score, $postid);
-    $stmt->execute();
-    $stmt->close();
-
-    $stmt = $conn->prepare('INSERT INTO vote (Post_ID, User_ID, isUpvote) VALUES (?, (SELECT ID_User FROM user WHERE username = ?), ?)');
-    $stmt->bind_param('isi', $postid, $username, $upvoteNum);
-    $stmt->execute();
-    $stmt->close();
-    $conn->close();
+    $dbconn->update_cell('post', 'score', ValType::INT, $post_score, 'ID_Post', ValType::INT, $postid);
+    $uid = $dbconn->get_cell('SELECT ID_User FROM user WHERE username = ?', ValType::STRING, $username);
+    $dbconn->insert_row('vote', 'Post_ID', ValType::INT, $postid, 'User_ID', ValType::INT, $uid, 'isUpvote', ValType::INT, $upvoteNum);
 
     // Redirect back to post
     header('Location: /post/?id=' . $postid, true, 301);

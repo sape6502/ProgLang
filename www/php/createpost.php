@@ -32,14 +32,19 @@
         exit;
     }
 
+    $password = $_POST['password'];
+    $title = $_POST['title'];
+
     // Verify user password
-    include 'verifyuser.php';
-    if ($conn_err) {
+    include 'db_connect.php';
+    $dbconn = new DBConn();
+
+    if ($dbconn->conn_err) {
         $_SESSION['err_dbconn'] = true;
         header('Location: /main', true, 301);
         exit;
     }
 
-    if ($verified) {
+    if ($dbconn->verify_user($username), $password) {
         $stmt = $conn->prepare();
     }

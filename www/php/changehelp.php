@@ -14,18 +14,15 @@
 
     // Connect to database
     include 'db_connect.php';
+    $dbconn = new DBConn();
 
-    if ($conn_err) {
+    if ($dbconn->conn_err) {
         header('Location: /main', true, 301);
         exit;
     }
 
     // Get previous count
-    $stmt = $conn->prepare('SELECT helpfulness FROM article WHERE name = ?');
-    $stmt->bind_param('s', $lang);
-    $stmt->execute();
-    $helpfulness = $stmt->get_result()->fetch_assoc()['helpfulness'];
-    $stmt->close();
+    $helpfulness = $dbconn->get_cell('SELECT helpfulness FROM article WHERE name = ?', ValType::STRING, $lang);
 
     if ($isHelpful) {
         $helpfulness++;
@@ -34,9 +31,7 @@
     }
 
     // Insert new helpfulness into database
-    $stmt = $conn->prepare('UPDATE article SET helpfulness = ? WHERE name = ?');
-    $stmt->bind_param('is', $helpfulness, $lang);
-    $stmt->execute();
+    $dbconn->update_cell('article', 'helpfulness', ValType::INT, $helpfulness, 'name', ValType::STRING, $lang);
 
     // Redirect back to article page
     header('Location: /article/?lang=' . $lang, true, 301);

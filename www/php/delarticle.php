@@ -28,23 +28,18 @@
 
     // Check the user's Password
     include '../php/db_connect.php';
+    $dbconn = new DBConn();
 
-    if ($conn_err) {
+    if ($dbconn->conn_err) {
         $_SESSION['err_dbconn'] = true;
         header('Location: /article/?lang=' . $proglang);
         exit;
     }
 
-    $stmt = $conn->prepare('SELECT passwordHash, username FROM user JOIN article ON author_User_ID = ID_User WHERE name = ?');
-    $stmt->bind_param('s', $proglang);
-    $stmt->execute();
-    $result = $stmt->get_result()->fetch_assoc();
-    $pHash = $result['passwordHash'];
-    $uName = $result['username'];
-    $stmt->close();
+    $uName = $dbconn->get_cell('SELECT username FROM user JOIN article ON author_User_ID = ID_User WHERE name = ?', ValType::STRING, $proglang);
 
     // Verify user's credentials
-    if (!password_verify($password, $pHash) || strcmp($username, $uName) != 0) {
+    if (!$dbconn->verify_user($username, $password) || strcmp($username, $uName) != 0) {
         $_SESSION['err_password'] = true;
         header('Location: /article/?lang=' . $proglang);
         exit;
@@ -52,15 +47,12 @@
 
     //TODO: Add a secondary 'are you sure' warning
     // Delete article
-    unlink('/article/langs/' . $proglang . '/' . $proglang . '.ad');
-    unlink('/article/langs/' . $proglang . '/' . $proglang . '.html');
-    unlink('/article/langs/' . $proglang . '/' . $proglang . '.pdf');
-    rmdir('/article/langs/' . $proglang);
+    unlink('../article/langs/' . $proglang . '/' . $proglang . '.ad');
+    unlink('../article/langs/' . $proglang . '/' . $proglang . '.html');
+    unlink('../article/langs/' . $proglang . '/' . $proglang . '.pdf');
+    rmdir('../article/langs/' . $proglang);
 
-    $stmt = $conn->prepare('DELETE FROM article WHERE name = ?');
-    $stmt->bind_param('s', $proglang);
-    $stmt->execute();
-    $stmt->close();
+    $dbconn->delete_row('article', 'name', ValType::STRING, $proglang);
 
     header('Location: /main');
     exit;

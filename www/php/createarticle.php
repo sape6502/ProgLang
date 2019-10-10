@@ -27,37 +27,28 @@
 
     // Connect to database
     include 'db_connect.php';
-    if ($conn_err) {
+    $dbconn = new DBConn();
+
+    if ($dbconn->conn_err) {
         $_SESSION['err_dbconn'] = true;
         header('Location: /create', true, 301);
         exit;
     }
 
     // Verify credentials
-    $stmt = $conn->prepare('SELECT ID_User, passwordHash FROM user WHERE username = ?');
-    $stmt->bind_param('s', $_SESSION['username']);
-    $stmt->execute();
-    $res = $stmt->get_result()->fetch_assoc();
-    $pHash = $res['passwordHash'];
-    $UID = $res['ID_User'];
-    $stmt->close();
-
-    if (!password_verify($_POST['password'], $pHash)) {
+    if (!$dbconn->verify_user($_SESSION['username'], $_POST['password'])) {
         $_SESSION['err_passwd'] = true;
         header('Location: /create', true, 301);
         exit;
     }
 
     // Create new article
-    $stmt = $conn->prepare('INSERT INTO article (name, author_User_ID) VALUES(?, ?)');
-    $stmt->bind_param('si', $lang, $UID);
-    $stmt->execute();
-    $stmt->close();
-    $conn->close();
+    $UID = $dbconn->get_cell('SELECT ID_User FROM user WHERE username = ?', ValType::STRING, $_SESSION['username']);
+    $dbconn->insert_row('article', 'name', ValType::STRING, $lang, 'author_User_ID', ValType::INT, $UID);
 
     // Save in AsciiDoc File
-    mkdir('/article/langs/' . $lang);
-    $asciidocFile = '/article/langs/' . $lang . '/' . $lang . '.ad';
+    mkdir('../article/langs/' . $lang);
+    $asciidocFile = '../article/langs/' . $lang . '/' . $lang . '.ad';
     $adFile = fopen($asciidocFile, 'w');
     fwrite($adFile, $article);
     fclose($adFile);

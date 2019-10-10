@@ -13,17 +13,15 @@
     if (isset($_POST['submit'], $_POST['description'])) {
 
         include 'db_connect.php';
+        $dbconn = new DBConn();
 
-        if ($conn_err) {
+        if ($dbconn->conn_err) {
             $_SESSION['err_dbconn'] = true;
             header('Location: /user?user=' . $username, true, 301);
             exit;
         }
 
-        $stmt = $conn->prepare('UPDATE user SET description = ? WHERE username = ?');
-        $stmt->bind_param('ss', $_POST['description'], $username);
-        $stmt->execute();
-        $stmt->close();
+        $dbconn->update_cell('user', 'description', ValType::STRING, $_POST['description'], 'username', ValType::STRING, $username);
 
     }
 

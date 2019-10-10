@@ -9,7 +9,7 @@
 
     // Get article text content
     $proglang = $_SESSION['proglang'];
-    $asciidocFile = '/article/langs/' . $proglang . '/' . $proglang . '.ad';
+    $asciidocFile = '../article/langs/' . $proglang . '/' . $proglang . '.ad';
     $adFile = fopen($asciidocFile, 'r');
     $asciidocContent = fread($adFile, filesize($asciidocFile));
     fclose($adFile);
@@ -21,7 +21,6 @@
     <input type="password" name="password" placeholder="Password">
     <input type="submit" name="submit" value="Change Article">
 </form>
-<br><a href="/article/?lang=<?= $proglang ?>">Back to article</a>
 
 <?php
 
@@ -38,3 +37,5 @@
     }
 
 ?>
+
+<br><a href="/article/?lang=<?= $proglang ?>">Back to article</a>

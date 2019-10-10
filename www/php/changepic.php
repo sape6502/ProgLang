@@ -19,12 +19,13 @@
     }
 
     $target_file = basename($_FILES['picture']['name']);
-    $filename = '/assets/img/profilepic/pp_' . uniqid() . '.' . strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $filename = '../assets/img/profilepic/pp_' . uniqid() . '.' . strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $password = $_POST['password'];
 
     include 'db_connect.php';
+    $dbconn = new DBConn();
 
-    if ($conn_err) {
+    if ($dbconn->conn_err) {
         $_SESSION['err_dbconn'] = true;
         header('Location: /user?user=' . $username, true, 301);
         exit;
@@ -42,27 +43,18 @@
     */
 
     // Verify password
-    $stmt = $conn->prepare('SELECT passwordHash, picture FROM user WHERE username = ?');
-    $stmt->bind_param('s', $username);
-    $stmt->execute();
-    $result = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
-    $passHash = $result['passwordHash'];
-    $oldPic = $result['picture'];
+    $oldPic = $dbconn->get_cell('SELECT picture FROM user WHERE username = ?', ValType::STRING, $username);
 
-    if (!password_verify($password, $passHash)) {
+    if (!$dbconn->verify_user($username, $password)) {
         $_SESSION['err_passwrong_im'] = true;
         header('Location: /user?user=' . $username, true, 301);
         exit;
     }
 
-    $stmt = $conn->prepare('UPDATE user SET picture = ? WHERE username = ?');
-    $stmt->bind_param('ss', $filename, $username);
-    $stmt->execute();
-    $stmt->close();
+    $dbconn->update_cell('user', 'picture', ValType::STRING, $filename, 'username', ValType::STRING, $username);
 
     //delete old picture
-    if (strcmp($oldPic, '/assets/img/profilepic/placeholder.png') != 0 && file_exists($oldPic)) {
+    if (strcmp($oldPic, '../assets/img/profilepic/placeholder.png') != 0 && file_exists($oldPic)) {
         unlink($oldPic);
     }
 

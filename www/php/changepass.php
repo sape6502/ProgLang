@@ -25,8 +25,9 @@
     $newPass2 = $_POST['newPass2'];
 
     include 'db_connect.php';
+    $dbconn = new DBConn();
 
-    if ($conn_err) {
+    if ($dbconn->conn_err) {
         $_SESSION['err_dbconn'] = true;
         header('Location: /user?user=' . $username, true, 301);
         exit;
@@ -39,14 +40,8 @@
     }
 
     // Get old user password hash
-    $stmt = $conn->prepare('SELECT passwordHash FROM user WHERE username = ?');
-    $stmt->bind_param('s', $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $stmt->close();
-    $passHash = $result->fetch_assoc()['passwordHash'];
 
-    if (!password_verify($oldPass, $passHash)) {
+    if (!$dbconn->verify_user($username, $oldPass)) {
         $_SESSION['err_passwrong_ch'] = true;
         header('Location: /user?user=' . $username, true, 301);
         exit;
@@ -54,10 +49,7 @@
 
     // Update password with new one
     $newHash = password_hash($newPass1, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare('UPDATE user SET passwordHash = ? WHERE username = ?');
-    $stmt->bind_param('ss', $newHash, $username);
-    $stmt->execute();
-    $stmt->close();
+    $dbconn->update_cell('user', 'passwordHash', ValType::STRING, $newHash, 'username', ValType::STRING, $username);
 
     $_SESSION['succ_passchange'] = true;
     header('Location: /user?user=' . $username, true, 301);

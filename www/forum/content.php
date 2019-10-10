@@ -13,7 +13,7 @@
     $loggedIn = isset($_SESSION['username'], $_SESSION['trustScore']) && $_SESSION['trustScore'] >= $min_rate_posts;
 
     // Get all posts for this language
-    $result = $dbconn->get_full('SELECT * FROM post JOIN article ON lang_Article_ID = ID_Article JOIN user ON creator_User_ID = ID_User WHERE name',
+    $result = $dbconn->get_full('SELECT * FROM post JOIN article ON lang_Article_ID = ID_Article JOIN user ON creator_User_ID = ID_User WHERE name = ?',
         ValType::STRING, $lang);
 
 ?>

@@ -36,7 +36,7 @@
                 $_SESSION['trustScore'] = $result['trustScore'];
                 $_SESSION['joinDate'] = $result['joinDate'];
                 $_SESSION['picture'] = $result['picture'];
-
+                
                 header('Location: ' . $redirect, true, 301);
                 exit;
             } else {

@@ -11,4 +11,5 @@
     $page_title = $lang . ' - Forum';
     $page_content = 'content.php';
     include '../layout/default.php';
+    $_SESSION['loginRedirect'] = '/forum/?lang=' . $lang;
 ?>

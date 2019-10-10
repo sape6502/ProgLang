@@ -26,9 +26,11 @@
     $post_score = $result['score'];
     $post_ctime = $result['timeCreated'];
     $post_authu = $result['username'];
+    $post_plang = $result['name'];
     $lang = $result['name'];
 
     $page_title = $post_title;
     $page_content = 'content.php';
     include '../layout/default.php';
+    $_SESSION['loginRedirect'] = '/post/?id=' . $post_idnum;
 ?>

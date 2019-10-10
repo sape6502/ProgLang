@@ -24,8 +24,10 @@
         <?php
             if (isset($post_image)) {
                 echo '<img src="' . $post_image . '" alt="Image failed to load.">';
-            } else {
+            } else if (isset($post_ctext)) {
                 echo '<p>' . $post_ctext . '</p>';
+            } else {
+                echo '<h5 class="orange">Something went wrong...</h5>';
             }
         ?>
     </div>

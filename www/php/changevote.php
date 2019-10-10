@@ -10,6 +10,7 @@
 
     // Check user login
     include 'trustconfig.php';
+    session_start();
     if (!isset($_SESSION['username'], $_SESSION['trustScore']) || $_SESSION['trustScore'] < $min_rate_posts) {
         header('Location: /post/?id=' . $postid, true, 301);
         exit;
@@ -35,18 +36,31 @@
     }
 
     // Calculate new post score
+    $post_score = $dbconn->get_cell('SELECT score FROM post WHERE ID_Post = ?', ValType::INT, $postid);
     if ($isUpvote) {
         $upvoteNum = 1;
-        $post_score++;
     } else {
         $upvoteNum = 0;
-        $post_score--;
     }
 
     // Update database
-    $dbconn->update_cell('post', 'score', ValType::INT, $post_score, 'ID_Post', ValType::INT, $postid);
     $uid = $dbconn->get_cell('SELECT ID_User FROM user WHERE username = ?', ValType::STRING, $username);
-    $dbconn->insert_row('vote', 'Post_ID', ValType::INT, $postid, 'User_ID', ValType::INT, $uid, 'isUpvote', ValType::INT, $upvoteNum);
+    echo '<br>User ID: ' . $uid;
+    $vid = $dbconn->get_query('SELECT ID_Vote FROM vote WHERE User_ID = ? AND Post_ID = ?', ValType::INT, $uid, ValType::INT, $postid)['ID_Vote'];
+    echo '<br>Vote ID: ' . $vid;
+    if (!$vid) {
+        $dbconn->insert_row('vote', 'Post_ID', ValType::INT, $postid, 'User_ID', ValType::INT, $uid, 'isUpvote', ValType::INT, $upvoteNum);
+    } else {
+        $dbconn->update_cell('vote', 'isUpvote', ValType::INT, $upvoteNum, 'ID_Vote', ValType::INT, $vid);
+    }
+
+    // Update post score
+    $post_score = $dbconn->get_query('SELECT
+                        (SELECT COUNT(*) FROM vote WHERE Post_ID = ? AND isUpvote = 1) -
+                        (SELECT COUNT(*) FROM vote WHERE Post_ID = ? AND isUpvote = 0)
+                        AS score', ValType::INT, $postid, ValType::INT, $postid)['score'];
+    echo '<br>Post score: ' . $post_score;
+    $dbconn->update_cell('post', 'score', ValType::INT, $post_score, 'ID_Post', ValType::INT, $postid);
 
     // Redirect back to post
     header('Location: /post/?id=' . $postid, true, 301);

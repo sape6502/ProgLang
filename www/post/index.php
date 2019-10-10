@@ -8,19 +8,16 @@
 
     // Connect to database
     include '../php/db_connect.php';
+    $dbconn = new DBConn();
 
-    if ($conn_err) {
+    if ($dbconn->conn_err) {
         header('Location: ../main', true, 301);
         exit;
     }
 
     // Load post info
-    $stmt = $conn->prepare('SELECT * FROM post JOIN article ON lang_Article_ID = ID_Article JOIN user ON creator_User_ID = ID_User WHERE ID_Post = ?');
-    $stmt->bind_param('i', $_GET['id']);
-    $stmt->execute();
-    $result = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
-    $conn->close();
+    $result = $dbconn->get_query('SELECT * FROM post JOIN article ON lang_Article_ID = ID_Article JOIN user ON creator_User_ID = ID_User WHERE ID_Post = ?',
+                        ValType::INT, $_GET['id']);
 
     $post_idnum = $result['ID_Post'];
     $post_title = $result['contentTitle'];

@@ -104,27 +104,47 @@
         }
 
         // Gets full result set without only selecting the top row
-        public function get_full($query, $valtype, $value) {
-            if (!$this->conn_err) {
-                $stmt = $this->conn->prepare($query);
-                $stmt->bind_param($valtype, $value);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                $stmt->close();
+        public function get_full() {
+            $argc = func_num_args();
 
-                if ($result != NULL) {
+            if ($argc < 3) {
+                return NULL;
+            } else if (($argc - 1) % 2 != 0) {
+                return NULL;
+            } else {
+
+                $query = func_get_arg(0);
+
+                // Generate valtype string
+                $data[0] = '';
+                for ($i=1; $i<$argc; $i+=2) {
+                    $data[0] = $data[0] . func_get_arg($i);
+                }
+
+                // Add data to enter
+                for ($i=2; $i<$argc; $i+=2) {
+                    array_push($data, func_get_arg($i));
+                }
+
+                // Connect to database and insert data
+                if (!$this->conn_err) {
+
+                    // Insert new row
+                    $stmt = $this->conn->prepare($query);
+                    call_user_func_array(array($stmt, 'bind_param'), $this->SqlArrayReferenceValues($data));
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $stmt->close();
 
                     return $result;
-
-                } else {
-                    return NULL;
                 }
+
             }
         }
 
         // Gets an array of table contents using a specific SQL-Query
-        public function get_query($query, $valtype, $value) {
-            return $this->get_full($query, $valtype, $value)->fetch_assoc();
+        public function get_query() {
+            return call_user_func_array(array($this, 'get_full'), func_get_args())->fetch_assoc();
         }
 
         // Updates a cell to a language
@@ -134,12 +154,6 @@
                 $stmt->bind_param($newvaltype . $valtype, $newval, $value);
                 $stmt->execute();
                 $stmt->close();
-
-                if ($result != NULL) {
-                    return false;
-                } else {
-                    return true;
-                }
             }
         }
 

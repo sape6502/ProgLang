@@ -32,3 +32,5 @@
     }
 
 ?>
+<hr>
+<a href="/forum/?lang=<?= $lang ?>">Back to <?= $lang ?> Forum</a>

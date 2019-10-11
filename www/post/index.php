@@ -27,7 +27,6 @@
     $post_ctime = $result['timeCreated'];
     $post_authu = $result['username'];
     $post_plang = $result['name'];
-    $lang = $result['name'];
 
     $page_title = $post_title;
     $page_content = 'content.php';

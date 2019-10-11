@@ -147,11 +147,21 @@
             return call_user_func_array(array($this, 'get_full'), func_get_args())->fetch_assoc();
         }
 
-        // Updates a cell to a language
+        // Updates a cell to any value
         public function update_cell($tblname, $newcol, $newvaltype, $newval, $colname, $valtype, $value) {
             if (!$this->conn_err) {
                 $stmt = $this->conn->prepare('UPDATE ' . $tblname . ' SET ' . $newcol . ' = ? WHERE ' . $colname . ' = ?');
                 $stmt->bind_param($newvaltype . $valtype, $newval, $value);
+                $stmt->execute();
+                $stmt->close();
+            }
+        }
+
+        // Sets a cell to NULL
+        public function nullify_cell($tblname, $newcol, $colname, $valtype, $value) {
+            if (!$this->conn_err) {
+                $stmt = $this->conn->prepare('UPDATE ' . $tblname . ' SET ' . $newcol . ' = NULL WHERE ' . $colname . ' = ?');
+                $stmt->bind_param($valtype, $value);
                 $stmt->execute();
                 $stmt->close();
             }

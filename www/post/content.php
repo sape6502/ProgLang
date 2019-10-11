@@ -8,13 +8,13 @@
 ?>
 <div class="post">
     <div class="titlebar">
-        <a href="/forum/?lang=<?= $lang ?>">Back to <?= $lang ?> Forum</a>
+        <a href="/forum/?lang=<?= $post_plang ?>">Back to <?= $post_plang ?> Forum</a>
         <i>Posted by <a href="/user/?user=<?= $post_authu ?>"><?= $post_authu ?></a> at <?= $post_ctime ?></i>
     </div>
 
     <?php
         if ($loggedIn && (strcmp($_SESSION['username'], $moduser) == 0 ||
-            strcmp($_SESSION['username'], $post_authu))) {
+            strcmp($_SESSION['username'], $post_authu) == 0)) {
 
             $_SESSION['postid'] = $post_idnum;
             $_SESSION['moduser'] = $moduser;
@@ -67,6 +67,46 @@
     </div>
 </div>
 <hr>
+<?php
+    if ($loggedIn)
+    echo '
+        <a href="/comment/index.php/?pid=' . $post_idnum . '">Comment on this post</a>
+        <hr>
+    ';
+?>
 <div class="comments">
+    <?php
 
+        // Loads all comments for the set post id and comment ID num
+        function loadComments($comment_idnm, $post_idnum, $dbconn, $post_plang) {
+            if ($comment_idnm == NULL) {
+                $results = $dbconn->get_full('SELECT  * FROM comment WHERE thread_Post_ID = ? AND parent_Comment_ID IS NULL',
+                ValType::INT, $post_idnum);
+            } else {
+                $results = $dbconn->get_full('SELECT  * FROM comment WHERE thread_Post_ID = ? AND parent_Comment_ID = ?',
+                ValType::INT, $post_idnum, ValType::INT, $comment_idnm);
+            }
+
+            // Display each comment (Recursively loads each comment's comments as well)
+            if ($results != NULL) {
+                while ($comment = $results->fetch_assoc()) {
+                    $comment_idnm = $comment['ID_Comment'];
+                    $comment_text = $comment['contentText'];
+                    $comment_time = $comment['timeCreated'];
+                    $userid = $comment['creator_User_ID'];
+
+                    if ($userid != NULL) {
+                        $comment_auth = $dbconn->get_cell('SELECT username FROM user WHERE ID_User = ?', ValType::INT, $userid);
+                    } else {
+                        $comment_auth = '[deleted]';
+                    }
+
+                    include 'comment.php';
+                }
+            }
+        }
+
+        loadComments(NULL, $post_idnum, $dbconn, $post_plang);
+
+    ?>
 </div>

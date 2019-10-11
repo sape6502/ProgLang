@@ -152,6 +152,10 @@
   .titlebar i {
     float: right; }
 
+.indented {
+  margin-left: 25px;
+  margin-top: 5px; }
+
 html, body {
   height: 100%; }
 

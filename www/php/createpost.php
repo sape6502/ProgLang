@@ -27,9 +27,9 @@
 
     // Check all fields are filled in
     if (!isset($_POST['title'], $_POST['password']) ||
-        (isset($_POST['text']) && isset($_POST['img']))) {
+        (!isset($_POST['text']) && !isset($_FILES['img']))) {
 
-        $_SESSION['err_fieldsset'] = true;
+        $_SESSION['err_fields'] = true;
         header('Location: /newpost/?lang=' . $lang . '&type=' . $type, true, 301);
         exit;
     }
@@ -64,6 +64,7 @@
                                     'contentTitle', ValType::STRING, $title,
                                     'contentText', ValType::STRING, $_POST['text']);
     } else {
+
         $target_file = basename($_FILES['img']['name']);
         $filename = '../assets/img/postimgs/img_' . uniqid() . '.' . strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         move_uploaded_file($_FILES['img']['tmp_name'], $filename);
@@ -76,5 +77,8 @@
 
     // Redirect to uploaded post
     $PID = $dbconn->get_cell('SELECT ID_Post FROM post WHERE creator_User_ID = ? ORDER BY timeCreated DESC LIMIT 1', ValType::INT, $UID);
+    $_SESSION['err_dbconn'] = false;
+    $_SESSION['err_passwd'] = false;
+    $_SESSION['err_fields'] = false;
     header('Location: /post/?id=' . $PID, true, 301);
     exit;

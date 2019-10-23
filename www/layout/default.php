@@ -31,23 +31,23 @@
                     <?php
                         //TODO: Make login page return you to where you were
                         if (isset($_SESSION['username'])) {
-                            include '../login/small_info.php';
+                            include '../../page/login/small_info.php';
                         } else {
-                            include '../login/small_form.html';
+                            include '../../page/login/small_form.html';
                         }
                     ?>
 
                     <!-- Search Bar -->
-                    <form id="searchForm" action="/search/index.php" method="get">
+                    <form id="searchForm" action="/page/search/index.php" method="get">
                         <input type="text" name="q" placeholder="Search...">
                         <input type="submit" name="submit" value="🔍">
                     </form>
                     <hr>
 
                     <ul>
-                        <li><a href="/main">Main Page</a></li>
-                        <li><a href="/php/random">Random Page</a></li>
-                        <li><a href="/guidelines">Community Guidelines</a></li>
+                        <li><a href="/page/main">Main Page</a></li>
+                        <li><a href="/page/random">Random Page</a></li>
+                        <li><a href="/page/guidelines">Community Guidelines</a></li>
                     </ul>
                     <hr>
 

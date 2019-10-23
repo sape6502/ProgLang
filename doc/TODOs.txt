@@ -1,0 +1,7 @@
+List of features that are "nice to have" for ProgLang:
+
+ - Forum tags
+ - Better authentication security (Using unique IDs)
+ - Make joinDate more "human readable" (Don't show exact time)
+ - Improve Article editor
+ - Standardise error messages

@@ -7,41 +7,52 @@
     $_SESSION['err_fields'] = false;
     $_SESSION['err_passwd'] = false;
 
-    if (!isset($_SESSION['pid'], $_SESSION['username'])) {
-        header('Location: /main', true, 301);
+    var_dump($_SESSION);
+
+    // Check user's logged in
+    if (!isset($_SESSION['username'])) {
+        header('Location: /page/main', true, 301);
         exit;
     }
 
     // Get post id and parent comment (if set)
+    if (!isset($_SESSION['pid'])) {
+        header('Location: /page/comment', true, 301);
+        exit;
+    }
+
     $postid = $_SESSION['pid'];
     $hasParent = isset($_SESSION['cid']);
-    unset($_SESSION['pid']);
+    //unset($_SESSION['pid']);
     if ($hasParent) {
         $parent = $_SESSION['cid'];
         unset($_SESSION['cid']);
     }
 
     // Check fields are set
-    if (!isset($_POST['comment'], $_POST['password'])) {
+    if (!isset($_POST['comment'], $_POST['password']) ||
+        strcmp($_POST['comment'], '') == 0 ||
+        strcmp($_POST['password'], '') == 0) {
+
         $_SESSION['err_fields'] = true;
-        header('Location: /comment', true, 301);
+        header('Location: /page/comment', true, 301);
         exit;
     }
 
     // Check database connection
-    include '../db_connect.php';
+    include '../config/db_connect.php';
     $dbconn = new DBConn();
 
     if ($dbconn->conn_err) {
         $_SESSION['err_dbconn'] = true;
-        header('Location: /comment', true, 301);
+        header('Location: /page/comment', true, 301);
         exit;
     }
 
     // Check user's password
     if (!$dbconn->verify_user($_SESSION['username'], $_POST['password'])) {
         $_SESSION['err_passwd'] = true;
-        header('Location: /comment', true, 301);
+        header('Location: /page/comment', true, 301);
         exit;
     }
 
@@ -64,5 +75,5 @@
     }
 
     // Redirect back to post
-    header('Location: /post/?id=' . $postid, true, 301);
+    header('Location: /page/post/?id=' . $postid, true, 301);
     exit;

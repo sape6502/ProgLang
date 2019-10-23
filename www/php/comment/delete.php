@@ -8,7 +8,7 @@
     $_SESSION['err_passwd'] = false;
 
     if (!isset($_SESSION['postid'], $_SESSION['username'])) {
-        header('Location: /main', true, 301);
+        header('Location: /page/main', true, 301);
         exit;
     }
 
@@ -19,19 +19,19 @@
     $comment = $_GET['cid'];
 
     // Check fields are set
-    if (!isset($_POST['password'])) {
+    if (!isset($_POST['password']) || strcmp($_POST['password'], '') == 0) {
         $_SESSION['err_fields'] = true;
-        header('Location: /post/?id=' . $postid, true, 301);
+        header('Location: /page/post/?id=' . $postid, true, 301);
         exit;
     }
 
     // Check database connection
-    include '../db_connect.php';
+    include '../config/db_connect.php';
     $dbconn = new DBConn();
 
     if ($dbconn->conn_err) {
         $_SESSION['err_dbconn'] = true;
-        header('Location: /post/?id=' . $postid, true, 301);
+        header('Location: /page/post/?id=' . $postid, true, 301);
         exit;
     }
 
@@ -43,14 +43,14 @@
         JOIN user ON author_User_ID = ID_User
         WHERE ID_Comment = ?', ValType::INT, $comment);
     if (strcmp($username, $user) != 0 && !strcmp($username, $moduser) != 0) {
-        header('Location: /post/?id=' . $postid, true, 301);
+        header('Location: /page/post/?id=' . $postid, true, 301);
         exit;
     }
 
     // Check user's password
     if (!$dbconn->verify_user($user, $_POST['password']) && !$dbconn->verify_user($moduser, $_POST['password'])) {
         $_SESSION['err_passwd'] = true;
-        header('Location: /post/?id=' . $postid, true, 301);
+        header('Location: /page/post/?id=' . $postid, true, 301);
         exit;
     }
 
@@ -59,5 +59,5 @@
     $dbconn->nullify_cell('comment', 'creator_User_ID', 'ID_Comment', ValType::INT, $comment);
 
     // Redirect back to post
-    header('Location: /post/?id=' . $postid, true, 301);
+    header('Location: /page/post/?id=' . $postid, true, 301);
     exit;

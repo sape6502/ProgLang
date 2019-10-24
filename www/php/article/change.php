@@ -27,7 +27,7 @@
     $article = $_POST['article'];
 
     // Check the user's Password
-    include '../php/config/db_connect.php';
+    include '../../php/config/db_connect.php';
     $dbconn = new DBConn();
 
     if ($dbconn->conn_err) {
@@ -48,14 +48,14 @@
 
     // Save changed text to AsciiDoc file
     $proglang = $_SESSION['proglang'];
-    $asciidocFile = '../page/article/langs/' . $proglang . '/' . $proglang . '.ad';
+    $asciidocFile = '../../page/article/langs/' . $proglang . '/' . $proglang . '.ad';
     $adFile = fopen($asciidocFile, 'w');
     fwrite($adFile, $article);
     fclose($adFile);
 
     // Covert to html and pdf
-    exec('asciidoctor -a stylesheet! -a last-update-label! ../page/article/langs/' . $proglang . '/' . $proglang . '.ad ');
-    exec('asciidoctor-pdf -a last-update-label! ../page/article/langs/' . $proglang . '/' . $proglang . '.ad ');
+    exec('asciidoctor -a stylesheet! -a last-update-label! ../../page/article/langs/' . $proglang . '/' . $proglang . '.ad ');
+    exec('asciidoctor-pdf -a last-update-label! ../../page/article/langs/' . $proglang . '/' . $proglang . '.ad ');
 
     // Return to article page
     header('Location: /page/article/?lang=' . $proglang, true, 301);

@@ -9,7 +9,7 @@
 
     // Get article text content
     $proglang = $_SESSION['proglang'];
-    $asciidocFile = '../page/article/langs/' . $proglang . '/' . $proglang . '.ad';
+    $asciidocFile = '../../page/article/langs/' . $proglang . '/' . $proglang . '.ad';
     $adFile = fopen($asciidocFile, 'r');
     $asciidocContent = fread($adFile, filesize($asciidocFile));
     fclose($adFile);
@@ -35,6 +35,8 @@
     if (isset($_SESSION['err_dbconn']) && $_SESSION['err_dbconn']) {
         echo '<h6 class="red">Failed to connect to database. Please try again later.</h6>';
     }
+
+    unset($_SESSION['err_fieldsset'], $_SESSION['err_password'], $_SESSION['err_dbconn'])
 
 ?>
 

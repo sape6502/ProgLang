@@ -7,7 +7,7 @@
     $_SESSION['err_passwd'] = false;
     $_SESSION['err_fields'] = false;
 
-    if (!isset($_SESSION['postid'], $_SESSION['moduser'], $_SESSION['postuser'], $_SESSION['proglang'])) {
+    if (!isset($_SESSION['postid'], $_SESSION['moduser'], $_SESSION['postuser'], $_SESSION['lang'])) {
         header('Location: /page/main', true, 301);
         exit;
     }
@@ -15,7 +15,7 @@
     $postid = $_SESSION['postid'];
     $postuser = $_SESSION['postuser'];
     $moduser = $_SESSION['moduser'];
-    $lang = $_SESSION['proglang'];
+    $lang = $_SESSION['lang'];
 
     unset($_SESSION['postid'], $_SESSION['moduser'], $_SESSION['postuser']);
 

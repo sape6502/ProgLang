@@ -1,0 +1,302 @@
+/// VARIABLES & EXTENDS ///
+
+// Greyscale
+$white: #FFFFFF
+$lightgrey: #DDDDDD
+$grey: #808080
+$darkgrey: #393E46
+$black: #000000
+
+// Colours (Roy G. Biv)
+$red: #DE1A10
+$orange: #EB8C17
+$yellow: #FCF403
+$green: #16D916
+$blue: #1776EB
+$indigo: #3D16D9
+$violet: #A216D9
+
+// Borders
+$borderWidth: 2px
+$borderType: solid
+$borderColour: $darkgrey
+
+// Padding and gaps
+$globalPad: 0.5vw
+$smallPad: 0.1vw
+$largePad: 2vw
+$gapSize: 2vw
+
+/// IDS ///
+#page
+    margin-left: 0
+    height: 100%
+    width: 100%
+
+#sideBar
+    background-color: $darkgrey
+    color: $white
+    padding: $globalPad
+
+    height: 100%
+    position: fixed
+    top: 0
+    left: 0
+    bottom: 0
+    display: block
+
+#outerContent
+    left: 25vw
+    margin-bottom: $largePad
+
+@media (max-width: 996px)
+    #sideBar
+        position: relative
+    #outerContent
+        left: auto
+
+#logo
+    width: 12vw
+    margin-left: auto
+    margin-right: auto
+    display: block
+
+#small_form
+    padding: $smallPad
+
+    img
+        width: 7.3vw
+        float: left
+
+    input[type=submit]
+        background-color: $lightgrey
+        width: 11vw
+        height: 4vh
+        margin: $smallPad
+        padding: $globalPad
+
+    input[type=text], input[type=password]
+        border: 1px solid $lightgrey
+        width: 11vw
+        height: 4vh
+        margin: $smallPad
+        padding: $globalPad
+
+#small_info
+    img
+        width: 115px
+        height: 115px
+        overflow: hidden
+        float: left
+        margin-right: $globalPad
+
+#formPage
+    padding: $globalPad
+
+    input
+        padding: $globalPad
+        margin: $smallPad
+        margin-left: 0
+        width: 100%
+
+#userPage
+    img
+        width: 200px
+        height: 200px
+        margin-bottom: $globalPad
+
+    form
+        width: 200px
+        padding: $globalPad
+
+        input
+            padding: $smallPad
+            margin: $smallPad
+            width: 100%
+
+        textarea
+            margin: $smallPad
+            width: 500px
+            height: 100px
+
+#articlebox
+    font-family: monospace
+
+/// CLASSES ///
+
+// FG-Colours
+.red
+    color: $red
+.orange
+    color: $orange
+.yellow
+    color: $yellow
+.green
+    color: $green
+.blue
+    color: $blue
+.indigo
+    color: $indigo
+.violet
+    color: $violet
+
+// BG-Colours
+.bg-red
+    background-color: $red
+.bg-orange
+    background-color: $orange
+.bg-yellow
+    background-color: $yellow
+.bg-green
+    background-color: $green
+.bg-blue
+    background-color: $blue
+.bg-indigo
+    background-color: $indigo
+.bg-violet
+    background-color: $violet
+
+.gap
+    height: $gapSize
+
+.box
+    border: $borderWidth $borderType $borderColour
+    padding: $globalPad
+    border-radius: 3px
+
+    h2
+        padding: $globalPad
+        border-bottom: $borderWidth $borderType $borderColour
+
+.post
+    margin-top: $globalPad
+    min-height: 40vh
+
+.buttonLink
+    border: 2px solid $white
+    border-bottom: 2px solid $grey
+    border-right:  2px solid $grey
+    padding: $globalPad
+    color: $white
+    background-color: $lightgrey
+
+.statbox
+    width: 50px
+    float: left
+
+    img
+        width: 50px
+        display: block
+
+    h3
+        text-align: center
+
+.contentbox
+    padding: $globalPad
+    margin-left: 75px
+
+
+    img
+        max-width: 600px
+        max-height: 600px
+
+
+.titlebar
+    width: 100%
+    min-height: 40px
+
+    h3
+        float: left
+
+    i
+        float: right
+
+.indented
+    margin-left: $largePad
+    margin-top: $smallPad
+
+.button
+    width: 10vw
+    background-color: $lightgrey
+    padding: $globalPad
+    text-decoration: none
+    color: $darkgrey
+
+    &:hover
+        text-decoration: none
+        background-color: $grey
+        background-color: $grey
+        color: $darkgrey
+
+.disabled
+    background-color: $lightgrey
+    padding: $globalPad
+    color: $grey
+
+    &:hover
+        background-color: $lightgrey
+        padding: $globalPad
+        color: $grey
+
+.admonitionblock
+    table
+        width: 90%
+        background-color: $lightgrey
+        padding: $globalPad
+
+.note
+    .icon
+        width: 100px
+        background-color: $blue
+        color: $black
+        font-weight: bold
+
+.tip
+    .icon
+        width: 100px
+        background-color: $green
+        color: $black
+        font-weight: bold
+
+.important
+    .icon
+        width: 100px
+        background-color: $yellow
+        color: $black
+        font-weight: bold
+
+.warning
+    .icon
+        width: 100px
+        background-color: $orange
+        color: $black
+        font-weight: bold
+
+.caution
+    .icon
+        width: 100px
+        background-color: $red
+        color: $black
+        font-weight: bold
+
+.highlight
+    padding: $globalPad
+    background-color: $lightgrey
+    color: $black
+    border-radius: 3px
+
+/// ELEMENTS ///
+
+input, textarea
+    padding: $globalPad
+
+hr
+    background-color: $black
+
+table, th, td
+    border: 2px solid $borderColour
+    padding: $globalPad
+    margin: $globalPad
+
+th
+    background-color: $lightgrey

@@ -1,0 +1,254 @@
+#page {
+  margin-left: 0;
+  height: 100%;
+  width: 100%; }
+
+#sideBar {
+  background-color: #393E46;
+  color: #FFFFFF;
+  padding: 0.5vw;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: block; }
+
+#outerContent {
+  left: 25vw;
+  margin-bottom: 2vw; }
+
+@media (max-width: 996px) {
+  #sideBar {
+    position: relative; }
+
+  #outerContent {
+    left: auto; } }
+#logo {
+  width: 12vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
+
+#small_form {
+  padding: 0.1vw; }
+  #small_form img {
+    width: 7.3vw;
+    float: left; }
+  #small_form input[type=submit] {
+    background-color: #DDDDDD;
+    width: 11vw;
+    height: 4vh;
+    margin: 0.1vw;
+    padding: 0.5vw; }
+  #small_form input[type=text], #small_form input[type=password] {
+    border: 1px solid #DDDDDD;
+    width: 11vw;
+    height: 4vh;
+    margin: 0.1vw;
+    padding: 0.5vw; }
+
+#small_info img {
+  width: 115px;
+  height: 115px;
+  overflow: hidden;
+  float: left;
+  margin-right: 0.5vw; }
+
+#formPage {
+  padding: 0.5vw; }
+  #formPage input {
+    padding: 0.5vw;
+    margin: 0.1vw;
+    margin-left: 0;
+    width: 100%; }
+
+#userPage img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 0.5vw; }
+#userPage form {
+  width: 200px;
+  padding: 0.5vw; }
+  #userPage form input {
+    padding: 0.1vw;
+    margin: 0.1vw;
+    width: 100%; }
+  #userPage form textarea {
+    margin: 0.1vw;
+    width: 500px;
+    height: 100px; }
+
+#articlebox {
+  font-family: monospace; }
+
+.red {
+  color: #DE1A10; }
+
+.orange {
+  color: #EB8C17; }
+
+.yellow {
+  color: #FCF403; }
+
+.green {
+  color: #16D916; }
+
+.blue {
+  color: #1776EB; }
+
+.indigo {
+  color: #3D16D9; }
+
+.violet {
+  color: #A216D9; }
+
+.bg-red {
+  background-color: #DE1A10; }
+
+.bg-orange {
+  background-color: #EB8C17; }
+
+.bg-yellow {
+  background-color: #FCF403; }
+
+.bg-green {
+  background-color: #16D916; }
+
+.bg-blue {
+  background-color: #1776EB; }
+
+.bg-indigo {
+  background-color: #3D16D9; }
+
+.bg-violet {
+  background-color: #A216D9; }
+
+.gap {
+  height: 2vw; }
+
+.box {
+  border: 2px solid #393E46;
+  padding: 0.5vw;
+  border-radius: 3px; }
+  .box h2 {
+    padding: 0.5vw;
+    border-bottom: 2px solid #393E46; }
+
+.post {
+  margin-top: 0.5vw;
+  min-height: 40vh; }
+
+.buttonLink {
+  border: 2px solid #FFFFFF;
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+  padding: 0.5vw;
+  color: #FFFFFF;
+  background-color: #DDDDDD; }
+
+.statbox {
+  width: 50px;
+  float: left; }
+  .statbox img {
+    width: 50px;
+    display: block; }
+  .statbox h3 {
+    text-align: center; }
+
+.contentbox {
+  padding: 0.5vw;
+  margin-left: 75px; }
+  .contentbox img {
+    max-width: 600px;
+    max-height: 600px; }
+
+.titlebar {
+  width: 100%;
+  min-height: 40px; }
+  .titlebar h3 {
+    float: left; }
+  .titlebar i {
+    float: right; }
+
+.indented {
+  margin-left: 2vw;
+  margin-top: 0.1vw; }
+
+.button {
+  width: 10vw;
+  background-color: #DDDDDD;
+  padding: 0.5vw;
+  text-decoration: none;
+  color: #393E46; }
+  .button:hover {
+    text-decoration: none;
+    background-color: #808080;
+    background-color: #808080;
+    color: #393E46; }
+
+.disabled {
+  background-color: #DDDDDD;
+  padding: 0.5vw;
+  color: #808080; }
+  .disabled:hover {
+    background-color: #DDDDDD;
+    padding: 0.5vw;
+    color: #808080; }
+
+.admonitionblock table {
+  width: 90%;
+  background-color: #DDDDDD;
+  padding: 0.5vw; }
+
+.note .icon {
+  width: 100px;
+  background-color: #1776EB;
+  color: #000000;
+  font-weight: bold; }
+
+.tip .icon {
+  width: 100px;
+  background-color: #16D916;
+  color: #000000;
+  font-weight: bold; }
+
+.important .icon {
+  width: 100px;
+  background-color: #FCF403;
+  color: #000000;
+  font-weight: bold; }
+
+.warning .icon {
+  width: 100px;
+  background-color: #EB8C17;
+  color: #000000;
+  font-weight: bold; }
+
+.caution .icon {
+  width: 100px;
+  background-color: #DE1A10;
+  color: #000000;
+  font-weight: bold; }
+
+.highlight {
+  padding: 0.5vw;
+  background-color: #DDDDDD;
+  color: #000000;
+  border-radius: 3px; }
+
+input, textarea {
+  padding: 0.5vw; }
+
+hr {
+  background-color: #000000; }
+
+table, th, td {
+  border: 2px solid #393E46;
+  padding: 0.5vw;
+  margin: 0.5vw; }
+
+th {
+  background-color: #DDDDDD; }
+
+/*# sourceMappingURL=main.css.map */

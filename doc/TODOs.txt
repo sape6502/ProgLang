@@ -6,3 +6,6 @@ List of features that are "nice to have" for ProgLang:
  - Improve Article editor
  - Standardise error messages
  - Make helpfulness user based, so no one user can vote multiple time
+ - Move some of the larger portions of the main SASS to external files.
+ - Allow page moderators to add other users as moderators
+ - Allow moderators to punish users for going against guidelines.

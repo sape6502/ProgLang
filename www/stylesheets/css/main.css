@@ -15,7 +15,7 @@
   display: block; }
 
 #outerContent {
-  left: 30vw;
+  left: 25vw;
   margin-bottom: 2vw; }
 
 @media (max-width: 996px) {
@@ -136,7 +136,8 @@
     border-bottom: 2px solid #393E46; }
 
 .post {
-  margin-top: 0.5vw; }
+  margin-top: 0.5vw;
+  min-height: 40vh; }
 
 .buttonLink {
   border: 2px solid #FFFFFF;
@@ -145,9 +146,6 @@
   padding: 0.5vw;
   color: #FFFFFF;
   background-color: #DDDDDD; }
-
-.post {
-  min-height: 26vh; }
 
 .statbox {
   width: 50px;

@@ -1,5 +1,5 @@
 <form action="/php/comment/create.php" method="post" id="commentform">
-    <textarea name="comment" rows="8" cols="80" form="commentform"></textarea><br>
+    <textarea name="comment" rows="8" cols="65" form="commentform"></textarea><br>
     <input type="password" name="password" placeholder="Password">
     <input type="submit" name="submit" value="Comment">
 </form>

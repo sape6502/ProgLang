@@ -1,14 +1,14 @@
 /// VARIABLES & EXTENDS ///
 
-// Colours
+// Greyscale
 $white: #FFFFFF
 $lightgrey: #DDDDDD
 $grey: #808080
 $darkgrey: #393E46
 $black: #000000
 
-// Roy G. Biv
-$red: #FC0F03
+// Colours (Roy G. Biv)
+$red: #DE1A10
 $orange: #EB8C17
 $yellow: #FCF403
 $green: #16D916
@@ -22,47 +22,65 @@ $borderType: solid
 $borderColour: $darkgrey
 
 // Padding and gaps
-$globalPad: 10px
-$smallPad: 5px
-$largePad: 25px
-$gapSize: 25px
+$globalPad: 0.5vw
+$smallPad: 0.1vw
+$largePad: 2vw
+$gapSize: 2vw
 
 /// IDS ///
 #page
     margin-left: 0
     height: 100%
+    width: 100%
 
 #sideBar
     background-color: $darkgrey
     color: $white
     padding: $globalPad
+
     height: 100%
+    position: fixed
+    top: 0
+    left: 0
+    bottom: 0
+    display: block
+
+#outerContent
+    left: 30vw
+    margin-bottom: $largePad
+
+@media (max-width: 996px)
+    #sideBar
+        position: relative
+    #outerContent
+        left: auto
 
 #logo
-    width: 200px
+    width: 12vw
     margin-left: auto
     margin-right: auto
     display: block
 
 #small_form
     padding: $smallPad
-    height: 130px
 
     img
-        width: 80px
+        width: 7.3vw
         float: left
 
     input[type=submit]
         background-color: $lightgrey
-        width: 251px
-        height: 40px
-        margin-top: $smallPad
+        width: 11vw
+        height: 4vh
+        margin: $smallPad
+        padding: $globalPad
 
     input[type=text], input[type=password]
-        width: 160px
-        height: 40px
-        float: right
-        padding: $smallPad
+        border: 1px solid $lightgrey
+        width: 11vw
+        height: 4vh
+        margin: $smallPad
+        padding: $globalPad
 
 #small_info
     img
@@ -70,7 +88,7 @@ $gapSize: 25px
         height: 115px
         overflow: hidden
         float: left
-        margin-right: $smallPad
+        margin-right: $globalPad
 
 #formPage
     padding: $globalPad
@@ -101,7 +119,8 @@ $gapSize: 25px
             width: 500px
             height: 100px
 
-#searchForm
+#articlebox
+    font-family: monospace
 
 /// CLASSES ///
 
@@ -143,6 +162,7 @@ $gapSize: 25px
 .box
     border: $borderWidth $borderType $borderColour
     padding: $globalPad
+    border-radius: 3px
 
     h2
         padding: $globalPad
@@ -160,7 +180,7 @@ $gapSize: 25px
     background-color: $lightgrey
 
 .post
-    min-height: 230px
+    min-height: 26vh
 
 .statbox
     width: 50px
@@ -176,6 +196,7 @@ $gapSize: 25px
 .contentbox
     padding: $globalPad
     margin-left: 75px
+
 
     img
         max-width: 600px
@@ -196,17 +217,88 @@ $gapSize: 25px
     margin-left: $largePad
     margin-top: $smallPad
 
+.button
+    width: 10vw
+    background-color: $lightgrey
+    padding: $globalPad
+    text-decoration: none
+    color: $darkgrey
+
+    &:hover
+        text-decoration: none
+        background-color: $grey
+        background-color: $grey
+        color: $darkgrey
+
+.disabled
+    background-color: $lightgrey
+    padding: $globalPad
+    color: $grey
+
+    &:hover
+        background-color: $lightgrey
+        padding: $globalPad
+        color: $grey
+
+.admonitionblock
+    table
+        width: 90%
+        background-color: $lightgrey
+        padding: $globalPad
+
+.note
+    .icon
+        width: 100px
+        background-color: $blue
+        color: $black
+        font-weight: bold
+
+.tip
+    .icon
+        width: 100px
+        background-color: $green
+        color: $black
+        font-weight: bold
+
+.important
+    .icon
+        width: 100px
+        background-color: $yellow
+        color: $black
+        font-weight: bold
+
+.warning
+    .icon
+        width: 100px
+        background-color: $orange
+        color: $black
+        font-weight: bold
+
+.caution
+    .icon
+        width: 100px
+        background-color: $red
+        color: $black
+        font-weight: bold
+
+.highlight
+    padding: $globalPad
+    background-color: $lightgrey
+    color: $black
+    border-radius: 3px
+
 /// ELEMENTS ///
 
-html, body
-    height: 100%
+input, textarea
+    padding: $globalPad
 
 hr
     background-color: $black
 
 table, th, td
     border: 2px solid $borderColour
-    padding: $smallPad
+    padding: $globalPad
+    margin: $globalPad
 
 th
     background-color: $lightgrey

@@ -5,15 +5,118 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Untitled</title>
+<title>Creation</title>
 </head>
 <body class="article">
 <div id="header">
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_creation">Creation</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The 'C' Programming language was invented in 1972 at Bell Laboratories by Dennis Ritchie.
-This is an edit.</p>
+<p>The "C" Programming language was invented in 1972 by Dennis Ritchie and Ken
+Thompson, who were working at Bell laboratories together. C began as a more concise version of the BCPL language originally called "B". B was rather slow though and eventually evolved into the C we know and love today. The first somewhat standardised version of C was released with the publication of "The C Programming Language" by Brian Kernighan and Dennis Ritchie. This was nicknamed "K&amp;R C" and became the de facto standard for C compilers although it wasn&#8217;t a formal standard. The first actual standards regarding C didn&#8217;t arise until 1989 and 1990 when both ANSI and ISO released their specifications for C.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Many programmers still limited themselves to the K&amp;R version of C as it had been in use for
+longer and was more universally supported.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A couple of the most popular compilers used nowadays are:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://gcc.gnu.org/">GCC</a>
+  One of the older compilers, this is also capable of
+  compiling for other languages like C++ and Go.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://clang.llvm.org/">Clang</a>
+  This compiler is built on the LLVM Virtual Machine
+  meaning it can run on many systems and while
+  Clang itself only compiles C, C++, and Objective-C,
+  The LLVM has many high-quality compilers for many
+  other languages.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_basic_structure">Basic Structure</h3>
+<div class="paragraph">
+<p>To begin with, nearly every C program needs the line</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#include &lt;stdio.h&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This simply tells the compiler to use the standard input
+and output functions defined in the "stdio.h" header.
+This is what handles all communication between the User and
+the console.</p>
+</div>
+<div class="paragraph">
+<p>After that, you must define the "main" function. This is where
+all your code is going to go that should be run when the program
+is run. The main function can be defined like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>int main(void) {
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The "int" tells the run-time environment that this function will
+give an integer number when it is finished. Then comes the name of
+the function. In this case "main". Finally the "void" in parentheses lets
+the run-time environment know, that no arguments must be passed into main.
+finally, everything between the curly braces will be executed when the compiled
+program is run.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hello_world">Hello world</h3>
+<div class="paragraph">
+<p>For our program to output "Hello, world", we write:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>int main(void) {
+    printf("Hello, world!");
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When compiled you should be able to run it and get the following result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Hello, world!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The "printf" function is one of the output functions defined by stdio.h.
+This is the "Print Formatted" function which takes at least one string of
+characters as an argument and outputs it to the console.
+Congratulations, you have written your first C program.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">

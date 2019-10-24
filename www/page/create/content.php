@@ -13,7 +13,7 @@
 <form action="/php/article/create.php" method="post" id="createarticle">
     <input type="text" name="lang" placeholder="Language Name" readonly onfocus="this.removeAttribute('readonly');"><br>
     Article Content:<br>
-    <textarea name="article" rows="8" cols="80" form="createarticle"></textarea>
+    <textarea id="articlebox" name="article" rows="25" cols="80" form="createarticle"></textarea><br>
     <input type="password" name="password" placeholder="Password">
     <input type="submit" name="submit" value="Create Article">
 </form>

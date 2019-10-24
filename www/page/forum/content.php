@@ -17,9 +17,9 @@
         ValType::STRING, $lang);
 
 ?>
-
-<a href="/page/article/?lang=<?= $lang ?>">Article</a>
-<a href="#">Forum</a>
+<br>
+<a class="button" href="/page/article/?lang=<?= $lang ?>">Article</a>
+<a class="disabled button" href="#">Forum</a>
 <hr>
 
 <?php
@@ -27,8 +27,8 @@
     // Display link to create new posts
     if ($loggedIn && $_SESSION['trustScore'] >= $min_make_posts) {
         echo '
-            <a href="/page/newpost/?lang=' . $lang . '&type=text">Make New Text Post</a>
-            <a href="/page/newpost/?lang=' . $lang . '&type=img">Make New Image Post</a>
+            <a class="button" href="/page/newpost/?lang=' . $lang . '&type=text">Make New Text Post</a>
+            <a class="button" href="/page/newpost/?lang=' . $lang . '&type=img">Make New Image Post</a>
             <hr>
         ';
     }

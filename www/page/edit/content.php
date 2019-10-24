@@ -17,7 +17,7 @@
 ?>
 
 <form action="/php/article/change.php" method="post" id="articleform">
-    <textarea name="article" rows="8" cols="80" form="articleform"><?= $asciidocContent ?></textarea>
+    <textarea id="articlebox" name="article" rows="25" cols="80" form="articleform"><?= $asciidocContent ?></textarea><br>
     <input type="password" name="password" placeholder="Password">
     <input type="submit" name="submit" value="Change Article">
 </form>

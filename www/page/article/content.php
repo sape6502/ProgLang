@@ -30,14 +30,15 @@
     $_SESSION['lang'] = $proglang;
 
 ?>
+<br>
+<a class="disabled button" href="/page/article/?lang=<?= $proglang ?>">Article</a>
+<a class="button" href="/page/forum/?lang=<?= $proglang ?>">Forum</a>
 
-<a href="/page/article/?lang=<?= $proglang ?>" class="greyed">Article</a>
-<a href="/page/forum/?lang=<?= $proglang ?>">Forum</a>
-<hr>
 <?php include $htmlFile; ?>
 <hr>
+
 <h5>Downloads:</h5>
-<a href="langs/<?= $proglang ?>/<?= $proglang ?>.ad" download>AsciiDoc Download</a>
+<a href="langs/<?= $proglang ?>/<?= $proglang ?>.ad" download>AsciiDoc Download</a><br>
 <a href="langs/<?= $proglang ?>/<?= $proglang ?>.pdf" download>PDF Download</a>
 <hr>
 <i>Created by <a href="/page/user/?user=<?= $author ?>"><?= $author ?></a> on <?= $timeCreated ?>.</i>
@@ -62,7 +63,10 @@
 ?>
 
 <hr>
-<a href="/page/edit">Edit Article</a>
+<h5>Page Admin tools:</h5><br>
+<a class="button" href="/page/edit">Edit Article</a>
+
+<br><br>
 
 <form action="/php/article/delete.php" method="post">
     <input type="password" name="password" placeholder="Password">

@@ -23,19 +23,19 @@
             <div class="row">
 
                 <!-- Sidebar -->
-                <div class="col-md-3" id="sideBar">
+                <div class="col-lg-3" id="sideBar">
                     <img id="logo" src="/assets/img/logo_large.png" alt="ProgLang logo">
                     <hr>
 
                     <!-- Login Form -->
                     <?php
-                        //TODO: Make login page return you to where you were
                         if (isset($_SESSION['username'])) {
                             include '../../page/login/small_info.php';
                         } else {
                             include '../../page/login/small_form.html';
                         }
                     ?>
+                    <hr>
 
                     <!-- Search Bar -->
                     <form id="searchForm" action="/page/search/index.php" method="get">
@@ -49,34 +49,27 @@
                         <li><a href="/page/random">Random Page</a></li>
                         <li><a href="/page/guidelines">Community Guidelines</a></li>
                     </ul>
-                    <hr>
-
-                    <p>
-                        Contact:<br>
-                        <a href="mailto: samuel.pearce@crealogix.com">samuel.pearce@crealogix.com</a><br>
-                        +41 58 404 83 59
-                    </p>
 
                 </div>
 
                 <!-- Right Side -->
-                <div class="col-md-9">
+                <div class="col-lg-9 col-lg-offset-3" id="outerContent">
 
                     <!-- Page Title -->
                     <div class="row"><div class="gap"></div></div>
                     <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-11">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
                             <h1 class="box"><?= $page_title ?></h1>
                         </div>
                     </div>
                     <div class="row"><div class="gap"></div></div>
 
                     <div class="row">
-                        <div class="col-md-1"></div>
+                        <div class="col-lg-1"></div>
 
                         <!-- Main Content -->
-                        <div class="col-md-11">
+                        <div class="col-lg-11">
                             <div class="box">
                                 <?php include $page_content ?>
                             </div>
@@ -88,9 +81,8 @@
                 </div>
 
             </div>
-        </div>
 
-        <!-- TODO: Add footer -->
+        </div>
 
     </body>
 </html>

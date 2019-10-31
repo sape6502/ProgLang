@@ -33,14 +33,15 @@
 #small_form {
   padding: 0.1vw; }
   #small_form img {
-    width: 7.3vw;
+    width: 13vh;
     float: left; }
   #small_form input[type=submit] {
     background-color: #DDDDDD;
     width: 11vw;
     height: 4vh;
     margin: 0.1vw;
-    padding: 0.5vw; }
+    padding: 0.5vw;
+    line-height: 1vh; }
   #small_form input[type=text], #small_form input[type=password] {
     border: 1px solid #DDDDDD;
     width: 11vw;

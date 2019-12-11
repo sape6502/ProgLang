@@ -48,6 +48,11 @@
                     <h3>' . $post_score . '</h3>
                     <a href="/php/post/vote.php/?id=' . $post_idnum . '&u=n"><img class="votebtn" src="../../assets/img/downvote.png"></a>
                 ';
+            } else {
+                echo '
+                <img class="votebtn" src="../../assets/img/upvote-grey.png">
+                <h3>' . $post_score . '</h3>
+                <img class="votebtn" src="../../assets/img/downvote-grey.png">';
             }
         ?>
     </div>

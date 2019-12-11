@@ -54,7 +54,7 @@
     }
 
     // Upload file
-    if ($_FILES['picture']['size'] > 500000) {
+    if ($_FILES['picture']['size'] > 1000000) {
         $_SESSION['err_ftoobig'] = true;
         header('Location: /page/user?user=' . $username, true, 301);
         exit;
